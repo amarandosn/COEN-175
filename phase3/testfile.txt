@@ -1,0 +1,6 @@
+int main(int y)
+{
+	int *g;
+	int x[10];
+	y + g;
+}
