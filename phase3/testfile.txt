@@ -1,6 +1,8 @@
-int main(int y)
+/* params.c */
+
+int foo(int x, int y), bar(void *p, int x);
+
+int foo(int x, int y)
 {
-	int *g;
-	int x[10];
-	y + g;
+    return -x + !y * 10 != 3;
 }

@@ -1,10 +1,15 @@
 Opening Scope
 Opening Function Scope
-Define function main with specifier 272 and indirection 0
-Declare variable g with specifier 272 and indirection 1
-Declare array x with specifier 272, length 10 and indirection 0
+Declare function foo
+Declare function bar
+Opening Function Scope
+Define function foo with specifier 272 and indirection 0
+Use symbol x
+neg
 Use symbol y
-Use symbol g
+not
+mul
 add
+neq
 Closing Function Scope
 Closing Scope

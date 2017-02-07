@@ -7,6 +7,31 @@
 
 using namespace std;
 
+/*
+./scc < array.c 2 > array.txt
+remove prints: ./scc < array.c > /dev/null 2> array.txt
+diff array.err array.txt
+
+./scc < array.c | diff array.out -
+*/
+
+
+//topscope();
+//currentscope();
+
+/*
+bool found;
+Symbol sym = find(name, found);
+if(found)
+{
+	...
+}
+else
+{
+	...
+}
+*/
+
 
 void openScope()
 {
@@ -18,45 +43,45 @@ void closeScope()
 	cout << "Closing Scope" << endl;
 }
 
-void openBlock()
-{
-	cout << "Opening Block" << endl;
-}
+// void openBlock()
+// {
+// 	cout << "Opening Block" << endl;
+// }
 
-void closeBlock()
-{
-	cout << "Closing Block" << endl;
-}
+// void closeBlock()
+// {
+// 	cout << "Closing Block" << endl;
+// }
 
-void openFuncScope()
-{
-	cout << "Opening Function Scope" << endl;
-}
+// void openFuncScope()
+// {
+// 	cout << "Opening Function Scope" << endl;
+// }
 
-void closeFuncScope()
-{
-	cout << "Closing Function Scope" << endl;
-}
+// void closeFuncScope()
+// {
+// 	cout << "Closing Function Scope" << endl;
+// }
 
-void openGlobalScope()
-{
-	cout << "Opening Global Scope" << endl;
-}
+// void openGlobalScope()
+// {
+// 	cout << "Opening Global Scope" << endl;
+// }
 
-void closeGlobalScope()
-{
-	cout << "Closing Global Scope" << endl;
-}
+// void closeGlobalScope()
+// {
+// 	cout << "Closing Global Scope" << endl;
+// }
 
-void openRemDeclScope()
-{
-	cout << "Opening Remaining Declarators Scope" << endl;
-}
+// void openRemDeclScope()
+// {
+// 	cout << "Opening Remaining Declarators Scope" << endl;
+// }
 
-void closeRemDeclScope()
-{
-	cout << "Closing Remaining Declarators Scope" << endl;
-}
+// void closeRemDeclScope()
+// {
+// 	cout << "Closing Remaining Declarators Scope" << endl;
+// }
 
 void declareFunc(string name, int spec, unsigned ind)
 {
@@ -68,6 +93,10 @@ void useSymbol(string name)
 	cout << "Use symbol " << name << endl;
 }
 
+
+//Type t( );
+//declareVar(name, t);
+//or declarVar(name, Type(____));
 void declareVar(string name, int spec, unsigned ind)
 {
 	cout << "Declare variable " << name << " with specifier " << spec << " and indirection " << ind << endl;

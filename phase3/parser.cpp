@@ -64,7 +64,7 @@ static void match(int t)
 /*
  * Function:	expect
  *
- * Description:	Analyze the standard input stream.
+ * Description:	Match the next token while holding onto and returning that token as a string.
  */
 
 static string expect(int t)
@@ -593,12 +593,12 @@ static void statement()
 {
     if (lookahead == '{') {
     //cout << "Open Block" << endl;
-    openBlock();
+    //openBlock();
 	match('{');
 	declarations();
 	statements();
 	//cout << "Close Block" << endl;
-	closeBlock();
+	//closeBlock();
 	match('}');
 
     } else if (lookahead == RETURN) {
@@ -777,17 +777,18 @@ static void topLevelDeclaration()
 
     if (lookahead == '[') {
     //cout << "Open Global Scope" << endl;
-    openGlobalScope();
+    //openGlobalScope();
 	match('[');
 	string length = expect(NUM);
 	match(']');
 	//cout << "Close Global Scope" << endl;
-	closeGlobalScope();
+	declareArray(name, spec, length, ind);
+	//closeGlobalScope();
 	remainingDeclarators(spec);
 
     } else if (lookahead == '(') {
     //cout << "Open Function Scope" << endl;
-    openFuncScope();
+    //openFuncScope();
 	match('(');
 	parameters();
 	match(')');
@@ -798,7 +799,7 @@ static void topLevelDeclaration()
 		    declarations();
 		    statements();
 		    //cout << "Close Function Scope" << endl;
-		    closeFuncScope();
+		    //closeFuncScope();
 		    match('}');
 
 		} 
@@ -813,7 +814,7 @@ static void topLevelDeclaration()
     } 
     else
     {
-	    closeFuncScope();
+	    //closeFuncScope();
 		remainingDeclarators(spec);
 	}
 }
