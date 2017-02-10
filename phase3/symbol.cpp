@@ -7,9 +7,10 @@
 # include "symbol.h"
 # include "type.h"
 
+
 using namespace std;
 
-
+//accessor for type
 
 //constructor
 Symbol::Symbol(string name, Type type)
@@ -17,19 +18,21 @@ Symbol::Symbol(string name, Type type)
 {
 }
 
-Type Symbol::type() const		
-{
-	return _type;
-}
-
 string Symbol::name() const 
 {
 	return _name;
 }
 
+Type Symbol::type() const		
+{
+	return _type;
+}
+
+
+
 std::ostream & operator << (std::ostream &ostr, const Symbol &symbol)
 {
-	ostr << "name: " << symbol.name() << "type: " << symbol.type() << endl;
+	ostr << "name: " << symbol.name() << " type: " << symbol.type() << endl;
 	return ostr;
 }
 

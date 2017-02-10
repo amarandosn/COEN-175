@@ -593,12 +593,12 @@ static void statement()
 {
     if (lookahead == '{') {
     //cout << "Open Block" << endl;
-    //openBlock();
+    openScope();
 	match('{');
 	declarations();
 	statements();
 	//cout << "Close Block" << endl;
-	//closeBlock();
+	closeScope();
 	match('}');
 
     } else if (lookahead == RETURN) {
@@ -729,7 +729,10 @@ static void globalDeclarator(int spec)
 	parameters();
 	match(')');
 	declareFunc(name, spec, ind);
+	//open scope
     }
+    else 
+    	declareVar(name, spec, ind);
 }
 
 
@@ -788,7 +791,7 @@ static void topLevelDeclaration()
 
     } else if (lookahead == '(') {
     //cout << "Open Function Scope" << endl;
-    //openFuncScope();
+    openScope();
 	match('(');
 	parameters();
 	match(')');
@@ -799,7 +802,7 @@ static void topLevelDeclaration()
 		    declarations();
 		    statements();
 		    //cout << "Close Function Scope" << endl;
-		    //closeFuncScope();
+		    closeScope();
 		    match('}');
 
 		} 
@@ -807,7 +810,7 @@ static void topLevelDeclaration()
 		{
 			//cout << "Close Function Scope" << endl;
 			declareFunc(name, spec, ind);
-			//closeFuncScope();
+			closeScope();
 		    remainingDeclarators(spec);
 		}
 
@@ -815,6 +818,7 @@ static void topLevelDeclaration()
     else
     {
 	    //closeFuncScope();
+	    //declareVar
 		remainingDeclarators(spec);
 	}
 }

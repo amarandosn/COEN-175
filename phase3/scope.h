@@ -1,3 +1,6 @@
+# ifndef SCOPE_H
+# define SCOPE_H
+
 # include <iostream>
 # include <cstdlib>
 # include <string>
@@ -7,22 +10,25 @@
 
 using namespace std;
 
-# ifndef SCOPE_H
-# define SCOPE_H
+
 
 typedef std::vector <Symbol *> Symbols; 
 
-
-// class Scope {
-// 	Scope *_enclosing;
-// 	Symbols _symbols;
+class Scope {
+	Scope * _enclosing;
+	Symbols _symbols;
 	
-// public:
-// 	// bool operator == (const Type &that) const; 		//comparator
-// 	// bool operator != (const Type &that) const;		//comparator
-// };
+	
+public:
+	//Scope(Scope *enclosing, Symbols symbols);		//constructor
+	Scope(Scope *enclosing, Symbols symbols);
+	Symbols getSymbols() const;						//accessor
+	Scope *enclosing();						//parent accessor
+	Symbol *lookup(const string &name) const;
+	Symbol *find(const string &name) const;
+	void insert(Symbol *symbol) const;
+};
 
-// std::ostream & operator << (std::ostream &ostr, const Type & type);
 
 
 # endif /* SCOPE_H */

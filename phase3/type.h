@@ -1,12 +1,20 @@
-# include <iostream>
-# include <cstdlib>
-
 # ifndef TYPE_H
 # define TYPE_H
+
+# include <iostream>
+# include <cstdlib>
+# include <vector>
+# include "tokens.h"
+
+
+using namespace std;
 
 enum Kind {
 	SCALAR, ARRAY, FUNCTION
 };
+
+typedef std::vector<class Type> Parameters;
+//Parameters *_params;
 
 class Type {
 	Kind _kind;
@@ -15,7 +23,10 @@ class Type {
 	
 	
 public:
-	Type(Kind kind, int specifier, unsigned indirection = 0);		//constructor
+	// Type(Kind kind, int specifier, unsigned indirection = 0);		//constructor
+	Parameters *params;
+	Type(Kind kind, int specifier, unsigned indirection = 0, Parameters *params = NULL);
+	//type constructor with parameters
 	Kind kind() const;			//accessor
 	int specifier() const;			//accessor
 	unsigned indirection() const;		//accessor
