@@ -7,11 +7,16 @@
  */
 
 # include <cstdlib>
+# include <stdlib.h>
 # include <iostream>
 # include <string>
+# include <vector>
 # include "tokens.h"
 # include "lexer.h"
 # include "checker.h"
+# include "type.h"
+# include "symbol.h"
+# include "scope.h"
 
 using namespace std;
 
@@ -55,7 +60,7 @@ static void match(int t)
 {
     if (lookahead != t)
     {
-    	cout << "match error, lookahead: " << lookahead << "t: " << t << endl;
+    	cout << "match error, lookahead: " << lookahead << " t: " << t << endl;
 		error("match");
 	}
     lookahead = lexan(lexbuf);
@@ -157,10 +162,17 @@ static void declarator(int spec)
 	match('[');
 	string length = expect(NUM);
 	match(']');
-	declareArray(name, spec, length, ind);
+	//Parameters *params;
+	Type t(ARRAY, spec, ind);
+	t.length = atoi(length.c_str());
+	declareArray(name, t);
     }
     else
-    	declareVar(name, spec, ind);
+    {
+    	//Parameters *params;
+    	Type t(SCALAR, spec, ind);
+    	declareVar(name, t);
+    }
 }
 
 
@@ -243,11 +255,14 @@ static void primaryExpression()
 
     } else if (lookahead == ID) {
 	string name = expect(ID);
-	useSymbol(name);
+	//Parameters *params;
+
 
 
 	if (lookahead == '(') {
 	    match('(');
+	    Type t(FUNCTION, INT);
+	    useSymbol(name, t);
 
 	    if (lookahead != ')') {
 		expression();
@@ -259,7 +274,11 @@ static void primaryExpression()
 	    }
 
 	    match(')');
+
+
 	}
+	Type t(SCALAR);
+	useSymbol(name, t);
 
     } else
 	error("primaryExpression");
@@ -653,11 +672,14 @@ static void statement()
  *		  specifier pointers identifier
  */
 
-static void parameter()
+static void parameter(Parameters *params)
 {
-    specifier();
-    pointers();
-    match(ID);
+    int spec = specifier();
+    unsigned ind = pointers();
+    string name = expect(ID);
+    Type t(FUNCTION, spec, ind, params);
+    declareVar(name, t);
+    params->push_back(t);
 }
 
 
@@ -678,24 +700,52 @@ static void parameter()
  *		  , parameter remaining-parameters
  */
 
-static void parameters()
+static void parameters(Parameters *params)
 {
-    if (lookahead == VOID) {
-	match(VOID);
+	//string v;
+	int spec;
+    if (lookahead == VOID) 
+    {
+    	//cout << "void parameter:" << VOID << endl;
+		match(VOID);
+		spec = VOID;
+		if (lookahead == ')')
+		{
+	    	return;
+	    }
 
-	if (lookahead == ')')
-	    return;
-
-    } else
-	specifier();
-
-    pointers();
-    match(ID);
-
-    while (lookahead == ',') {
-	match(',');
-	parameter();
+		//spec = specifier();
+		
+    } 
+    else
+    {
+    	//cout << "post void parameter" << endl;
+    	spec = specifier();
     }
+    
+	
+		//cout << "parameters 0" << endl;
+		//int spec = specifier();
+		//cout << "parameters 1" << endl;
+
+		//cout << "parameters 2" << endl;
+		//cout << "pre ind" << endl;
+	    unsigned ind = pointers();
+	    //cout << "parameters 3" << endl;
+	    string name = expect(ID);
+	    //cout << "parameters 4" << endl;
+	    Type t(SCALAR, spec, ind);
+	    //cout << "parameters 5: t = "<< t << endl;
+	    declareVar(name, t);
+	    //cout << "parameters 5.5" << endl;
+	    params->push_back(t);
+	    //cout << "parameters 6" << endl;
+	    while (lookahead == ',') {
+		match(',');
+		parameter(params);
+	    }
+	    
+	
 }
 
 
@@ -716,23 +766,33 @@ static void globalDeclarator(int spec)
 {
     unsigned ind = pointers();
     string name = expect(ID);
+    
     //match(ID);
 
     if (lookahead == '[') {
 	match('[');
 	string length = expect(NUM);
 	match(']');
-	declareArray(name, spec, length, ind);
+	Parameters *params = new Parameters;
+	Type t(ARRAY, spec, ind, params);
+	t.length = atoi(length.c_str());
+	declareArray(name, t);
 
     } else if (lookahead == '(') {
 	match('(');
-	parameters();
+	Parameters *params = new Parameters;
+	parameters(params);
 	match(')');
-	declareFunc(name, spec, ind);
+	Type t(FUNCTION, spec, ind, params);
+	declareFunc(name, t);
 	//open scope
     }
     else 
-    	declareVar(name, spec, ind);
+    {	
+    	Parameters *params = new Parameters;
+    	Type t(SCALAR, spec, ind, params);
+    	declareVar(name, t);
+    }
 }
 
 
@@ -785,32 +845,44 @@ static void topLevelDeclaration()
 	string length = expect(NUM);
 	match(']');
 	//cout << "Close Global Scope" << endl;
-	declareArray(name, spec, length, ind);
+	//Parameters *params;
+	Type t(ARRAY, spec, ind);
+	t.length = atoi(length.c_str());
+	declareArray(name, t);
 	//closeGlobalScope();
 	remainingDeclarators(spec);
 
     } else if (lookahead == '(') {
     //cout << "Open Function Scope" << endl;
-    openScope();
 	match('(');
-	parameters();
+	openScope();
+	//cout << "toplevel function declaration 1" << endl;
+	Parameters *params = new Parameters;
+	//cout << "toplevel function declaration 1.5" << endl;
+	parameters(params);
+	//cout << "toplevel function declaration 2" << endl;
 	match(')');
 
 		if (lookahead == '{') {
 		    match('{');
-		    defineFunc(name, spec, ind);
+		    Type t(FUNCTION, spec, ind, params);
+		    // defineFunc(name, t);
 		    declarations();
 		    statements();
 		    //cout << "Close Function Scope" << endl;
 		    closeScope();
+		    defineFunc(name, t);
 		    match('}');
 
 		} 
 		else
 		{
 			//cout << "Close Function Scope" << endl;
-			declareFunc(name, spec, ind);
+			cout << "declaring function" << endl;
+			Type t(FUNCTION, spec, ind, params);
+			// declareFunc(name, t);
 			closeScope();
+			declareFunc(name, t);
 		    remainingDeclarators(spec);
 		}
 
@@ -818,7 +890,10 @@ static void topLevelDeclaration()
     else
     {
 	    //closeFuncScope();
-	    //declareVar
+	    //Parameters *params;
+	    Type t(SCALAR, spec, ind);
+		declareVar(name, t);
+	
 		remainingDeclarators(spec);
 	}
 }

@@ -4,6 +4,10 @@
 # include <cstdlib>
 # include <iostream>
 # include <string>
+# include <vector>
+# include "tokens.h"
+# include "checker.h"
+# include "lexer.h"
 # include "type.h"
 # include "symbol.h"
 # include "scope.h"
@@ -47,80 +51,140 @@ Scope *current_scope, *global_scope;
 void openScope()
 {
 	cout << "Opening Scope" << endl;
+	current_scope = new Scope(current_scope);
+	if(global_scope == NULL)
+	{
+		global_scope = current_scope;
+		cout << "no global scope" << endl;
+	}
+	//Symbols *symbols;
+	//Scope scope(current_scope, symbols)
+	//Scope scope(current_scope, Symbols symbol)
 	//add scope to stack
+	//call scope constructor with current scope(parent) and symbols as parameters
 }
 
 void closeScope()
 {
 	cout << "Closing Scope" << endl;
-	//remove scope from stack
+	Scope *p;
+	cout << "closeScope() 1" << endl;
+	p = current_scope;
+	cout << "closeScope() 2" << endl;
+	if(current_scope != NULL)
+	{
+		current_scope = current_scope->enclosing();
+		cout << "Return to parent scope" << endl;
+		delete p;
+	}
+	cout << "closeScope() 3" << endl;
 }
 
 
-void declareFunc(string name, int spec, unsigned ind)
+void declareFunc(string name, Type type)
 {
-	cout << "Declare function " << name << endl;
-	// Symbol *symbol;
-	// Symbol = current_scope->find(name);
+	cout << "Declare function " << name << " with type " << type << endl;
 
-	// if(type != symbol->type())
-	// {
-	// 	report(confTypes, name);
-	// }
+	Symbol *symbol;
+	symbol = current_scope->find(name);
+
+	if(symbol == NULL)
+	{
+		cout << "declareFunc(): symbol not in current scope" << endl;
+		symbol = current_scope->lookup(name);
+		if(symbol == NULL)
+		{
+			cout << "declareFunc(): symbol not in ANY scope" << endl;
+			symbol = new Symbol(name, type);
+			cout << *symbol << endl;
+			current_scope->insert(symbol);
+		}
+		
+	}
+	else if(current_scope != global_scope)
+	{
+		cout << "declareFunc(): symbol not global" << endl;
+		report(redecl, name);
+	}
+	else if(type != symbol->type())
+	{
+		cout << "declareFunc(): symbol has diff types" << endl;
+		report(confTypes, name);
+	}
+	// check parameters?
 }
 
-void useSymbol(string name)
+void useSymbol(string name, Type type)
 {
 	cout << "Use symbol " << name << endl;
 
-	// Symbol *symbol;
-	// Symbol = current_scope->find(name);
-	
-	// if(symbol == NULL)
-	// {
-	// 	symbol = new symbol(name, type);
-	// 	current_scope->insert(symbol);
-	// }
-	// else if(current_scope != global_scope)
-	// {
-	// 	report(redecl, name);
-	// }
-	// else if(type != symbol->type())
-	// {
-	// 	report(confTypes, name);
-	// }
+	Symbol *symbol;
+	symbol = current_scope->find(name);
+
+	if(symbol == NULL)
+	{
+		cout << "useSymbol(): symbol " << name << ": " << type << " not found" << endl;
+		symbol = current_scope->lookup(name);
+		if(symbol == NULL)
+		{
+			cout << "useSymbol(): symbol " << name << ": " << type << " not in any scope" << endl;
+			if(type.kind() == FUNCTION)
+			{
+				declareVar(name, type);
+			}
+			else
+			{
+				report(undecl, name);
+			}
+		}
+		
+	}
+
+
 }
 
 
 //Type t( );
 //declareVar(name, t);
 //or declarVar(name, Type(____));
-void declareVar(string name, int spec, unsigned ind)
+void declareVar(string name, Type type)
 {
-	// cout << "Declare variable " << name << " with specifier " << spec << " and indirection " << ind << endl;
-	// Symbol *symbol;
-	// Symbol = current_scope->find(name);
+	cout << "Declare variable " << name << " with type " << type << endl;
+	Symbol *symbol;
+	symbol = current_scope->find(name);
 
-	// if(symbol == NULL)
-	// {
-	// 	symbol = new symbol(name, type);
-	// 	current_scope->insert(symbol);
-	// }
-	// else if(current_scope != global_scope)
-	// {
-	// 	report(redecl, name);
-	// }
-	// else if(type != symbol->type())
-	// {
-	// 	report(confTypes, name);
-	// }
+	if(symbol == NULL)
+	{
+		cout << "declareVar(): symbol not in current scope" << endl;
+		symbol = current_scope->lookup(name);
+		if(symbol == NULL)
+		{
+			cout << "declareFunc(): symbol not in ANY scope" << endl;
+			symbol = new Symbol(name, type);
+			cout << *symbol << endl;
+			current_scope->insert(symbol);
+		}
+	}
+	else if(current_scope != global_scope)
+	{
+		cout << "declareVar(): symbol not global" << endl;
+		report(redecl, name);
+	}
+	else if(type != symbol->type())
+	{
+		cout << "declareVar(): symbol has diff types" << endl;
+		report(confTypes, name);
+	}
+	else if(type.specifier() == VOID && type.indirection() == 0)
+		report(voidType, name);
+
 }
 
-void declareArray(string name, int spec, string length, unsigned ind)
+void declareArray(string name, Type type)
 {
 	//Type t(nspec, ind);
 	//t.length = length;
-	//Symbol sym(name, t);
+	//Symbol symbol(name, t);
 	//is this void or void array?
 		//if yes, then error e5
 	//does it exist anywhere?
@@ -131,12 +195,53 @@ void declareArray(string name, int spec, string length, unsigned ind)
 				//if not, error because cannot have a redeclaration 
 				//if yes, check for same type
 
-	cout << "Declare array " << name << " with specifier " << spec << ", length " << length << " and indirection " << ind << endl;
+	Symbol *symbol;
+	symbol = current_scope->find(name);
+
+	if(symbol == NULL)
+	{
+		cout << "declareArray(): symbol not in scope" << endl;
+		symbol = new Symbol(name, type);
+		current_scope->insert(symbol);
+		cout << *symbol << endl;
+	}
+	else if(current_scope != global_scope)
+	{
+		cout << "declareArray(): symbol not global" << endl;
+		report(redecl, name);
+	}
+	else if(type != symbol->type())
+	{
+		cout << "declareArray(): symbol has diff types" << endl;
+		report(confTypes, name);
+	}
+	else if(type.specifier() == VOID)
+	{
+		cout << "declareVar(): symbol is VOID" << endl;
+		report(voidType, name);
+	}
+	
+
+	cout << "Declare array " << name << " with type " << type << endl;
 }
 
-void defineFunc(string name, int spec, unsigned ind)
+void defineFunc(string name, Type type)
 {
-	cout << "Define function " << name << " with specifier " << spec << " and indirection " << ind << endl;
-
+	cout << "Define function " << name << " with type " << type << endl;
+	Symbol *symbol;
+	symbol = current_scope->find(name);
+	if(symbol == NULL)					
+	{
+		cout << "defineFunc(): symbol not in scope" << endl;
+		symbol = new Symbol(name, type);
+		current_scope->insert(symbol);
+		symbol->ifDef = true;
+		cout << *symbol << endl;
+	}
+	else if(symbol->ifDef == true)
+	{
+		report(redef, name);
+	}
+	//call declareFunc() in here after setting ifDef to true???
 }
 

@@ -1,15 +1,178 @@
 Opening Scope
-Opening Function Scope
-Declare function foo
-Declare function bar
-Opening Function Scope
-Define function foo with specifier 272 and indirection 0
-Use symbol x
-neg
-Use symbol y
-not
-mul
-add
-neq
-Closing Function Scope
+no global scope
+Opening Scope
+Declare variable x with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: x type: kind: 0 specifier: 272 indirection: 0
+
+
+Declare variable y with type kind: 2 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: y type: kind: 2 specifier: 272 indirection: 0
+
+
+declaring function
 Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Declare function foo with type kind: 2 specifier: 272 indirection: 0
+
+declareFunc(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: foo type: kind: 2 specifier: 272 indirection: 0
+
+
+Opening Scope
+Declare variable x with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: x type: kind: 0 specifier: 272 indirection: 0
+
+
+Declare variable p with type kind: 2 specifier: 285 indirection: 1
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: p type: kind: 2 specifier: 285 indirection: 1
+
+
+declaring function
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Declare function bar with type kind: 2 specifier: 272 indirection: 0
+
+declareFunc(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: bar type: kind: 2 specifier: 272 indirection: 0
+
+
+Opening Scope
+Declare variable a with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: a type: kind: 0 specifier: 272 indirection: 0
+
+
+Declare variable b with type kind: 2 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: b type: kind: 2 specifier: 272 indirection: 0
+
+
+Use symbol bar
+useSymbol(): symbol bar: kind: 2 specifier: 272 indirection: 0
+ not found
+Use symbol bar
+useSymbol(): symbol bar: kind: 0 specifier: 285 indirection: 0
+ not found
+Use symbol foobar
+useSymbol(): symbol foobar: kind: 2 specifier: 272 indirection: 0
+ not found
+useSymbol(): symbol foobar: kind: 2 specifier: 272 indirection: 0
+ not in any scope
+Declare variable foobar with type kind: 2 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: foobar type: kind: 2 specifier: 272 indirection: 0
+
+
+Use symbol foobar
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Define function foo with type kind: 2 specifier: 272 indirection: 0
+
+Opening Scope
+Declare variable x with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: x type: kind: 0 specifier: 272 indirection: 0
+
+
+declaring function
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Declare function foo with type kind: 2 specifier: 259 indirection: 0
+
+declareFunc(): symbol has diff types
+Opening Scope
+Declare variable a with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: a type: kind: 0 specifier: 272 indirection: 0
+
+
+Declare variable q with type kind: 2 specifier: 285 indirection: 1
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: q type: kind: 2 specifier: 285 indirection: 1
+
+
+declaring function
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Declare function bar with type kind: 2 specifier: 272 indirection: 0
+
+Opening Scope
+Declare variable i with type kind: 0 specifier: 272 indirection: 0
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: i type: kind: 0 specifier: 272 indirection: 0
+
+
+Declare variable j with type kind: 2 specifier: 285 indirection: 1
+
+declareVar(): symbol not in current scope
+declareFunc(): symbol not in ANY scope
+name: j type: kind: 2 specifier: 285 indirection: 1
+
+
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Define function bar with type kind: 2 specifier: 272 indirection: 0
+
+Opening Scope
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3
+Define function foobar with type kind: 2 specifier: 285 indirection: 0
+
+defineFunc(): symbol not in scope
+name: foobar type: kind: 2 specifier: 285 indirection: 0
+
+
+Closing Scope
+closeScope() 1
+closeScope() 2
+Return to parent scope
+closeScope() 3

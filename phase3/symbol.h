@@ -10,8 +10,8 @@
 using namespace std;
 
 
-typedef std::vector<Type> Parameters;
-Parameters *_params;
+// typedef std::vector<Type> Parameters;
+// //Parameters *_params;
 
 
 class Symbol {
@@ -22,7 +22,7 @@ public:
 	Symbol(string name, Type type);		//constructor
 	Type type() const;			//accessor
 	string name() const;			//accessor
-	bool ifDef() const;
+	bool ifDef;
 };
 
 std::ostream & operator << (std::ostream &ostr, const Symbol &symbol);

@@ -22,10 +22,11 @@ class Type {
 	unsigned _indirection;
 	
 	
+	
 public:
 	// Type(Kind kind, int specifier, unsigned indirection = 0);		//constructor
 	Parameters *params;
-	Type(Kind kind, int specifier, unsigned indirection = 0, Parameters *params = NULL);
+	Type(Kind kind, int specifier = VOID, unsigned indirection = 0, Parameters *params = NULL);
 	//type constructor with parameters
 	Kind kind() const;			//accessor
 	int specifier() const;			//accessor

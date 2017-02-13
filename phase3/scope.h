@@ -21,12 +21,12 @@ class Scope {
 	
 public:
 	//Scope(Scope *enclosing, Symbols symbols);		//constructor
-	Scope(Scope *enclosing, Symbols symbols);
+	Scope(Scope *enclosing);
 	Symbols getSymbols() const;						//accessor
-	Scope *enclosing();						//parent accessor
+	Scope *enclosing() const;						//parent accessor
 	Symbol *lookup(const string &name) const;
 	Symbol *find(const string &name) const;
-	void insert(Symbol *symbol) const;
+	void insert(Symbol *symbol);
 };
 
 

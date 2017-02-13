@@ -11,8 +11,8 @@
 using namespace std;
 
 
-Scope::Scope(Scope *enclosing, Symbols symbols)
-	:_enclosing(enclosing), _symbols(symbols)
+Scope::Scope(Scope *enclosing)
+	:_enclosing(enclosing)
 {
 }
 
@@ -26,7 +26,7 @@ Scope::Scope(Scope *enclosing, Symbols symbols)
 // 	enclosing = _enclosing;
 // }
 
-Scope *Scope::enclosing() {
+Scope *Scope::enclosing() const {
 	return _enclosing;
 }
 
@@ -38,12 +38,12 @@ Symbols Scope::getSymbols() const{
 
 Symbol *Scope::find(const string &name) const {
 		//check if name matches any symbols inside current scope
-		Symbols symbols;
-		for(int i = 0; i < symbols.size(); i++)
+		//Symbols symbols;
+		for(int i = 0; i < _symbols.size(); i++)
 		{
-			if(symbols[i]->name() == name)
+			if(_symbols[i]->name() == name)
 			{
-				return symbols[i];
+				return _symbols[i];
 			}
 		}
 		return NULL;
@@ -51,9 +51,9 @@ Symbol *Scope::find(const string &name) const {
 
 Symbol *Scope::lookup(const string &name) const {
 	//check if name has been declared any parent scopes
-	Scope *current;
+	//Scope *current = NULL;
 
-	Scope *parent = current->enclosing();
+	Scope *parent = _enclosing;
 
 	while(parent != NULL)
 	{
@@ -70,9 +70,9 @@ Symbol *Scope::lookup(const string &name) const {
 
 
 
-void Scope::insert(Symbol *symbol) const {
-		Symbols symbols;
-		symbols.push_back(symbol);
+void Scope::insert(Symbol *symbol) {
+		//Symbols symbols;
+		_symbols.push_back(symbol);
 }
 
 //similar structure as type, need symbols inside them, container class for symbols (vector or list)

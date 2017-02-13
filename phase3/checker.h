@@ -1,8 +1,12 @@
-# include <string>
-using namespace std;
-
 # ifndef CHECKER_H
 # define CHECKER_H
+
+# include <string>
+# include <vector>
+# include "type.h"
+using namespace std;
+
+
 
 void openScope();
 void closeScope();
@@ -14,11 +18,11 @@ void closeScope();
 // void closeGlobalScope();
 // void openRemDeclScope();
 // void closeRemDeclScope();
-void declareFunc(string name, int spec, unsigned ind);
-void declareVar(string name, int spec, unsigned ind);
-void declareArray(string name, int spec, string length, unsigned ind);
-void defineFunc(string name, int spec, unsigned ind);
-void useSymbol(string name);
+void declareFunc(string name, Type type);
+void declareVar(string name, Type type);
+void declareArray(string name, Type type);
+void defineFunc(string name, Type type);
+void useSymbol(string name, Type type);
 
 
 # endif /* CHECKER_H */
