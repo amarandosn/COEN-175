@@ -7,23 +7,18 @@
  */
 
 # include <cstdlib>
-# include <stdlib.h>
 # include <iostream>
-# include <string>
-# include <vector>
+# include "checker.h"
 # include "tokens.h"
 # include "lexer.h"
-# include "checker.h"
 # include "type.h"
-# include "symbol.h"
-# include "scope.h"
 
 using namespace std;
 
 static int lookahead;
 static string lexbuf;
 
-static void expression();
+static Type expression(bool &lvalue);
 static void statement();
 
 
@@ -33,18 +28,14 @@ static void statement();
  * Description:	Report a syntax error to standard error.
  */
 
-static void error(string s)
+static void error()
 {
     if (lookahead == DONE)
-		report("syntax error at end of file: '%s'", s);
-	
+	report("syntax error at end of file");
     else
-    {	
-	    report("syntax error at '%s'", lexbuf);
-		report("error from function: <%s>", s);
+	report("syntax error at '%s'", lexbuf);
 
-	    exit(EXIT_FAILURE);
-	}
+    exit(EXIT_FAILURE);
 }
 
 
@@ -59,25 +50,44 @@ static void error(string s)
 static void match(int t)
 {
     if (lookahead != t)
-    {
-    	cout << "match error, lookahead: " << lookahead << " t: " << t << endl;
-		error("match");
-	}
+	error();
+
     lookahead = lexan(lexbuf);
 }
+
 
 /*
  * Function:	expect
  *
- * Description:	Match the next token while holding onto and returning that token as a string.
+ * Description:	Match the next token against the specified token, and
+ *		return its lexeme.  We must save the contents of the buffer
+ *		from the lexical analyzer before matching, since matching
+ *		will advance to the next token.
  */
 
 static string expect(int t)
 {
-	string buf = lexbuf;
-	match(t);
-	return buf;
+    string buf = lexbuf;
+    match(t);
+    return buf;
 }
+
+
+/*
+ * Function:	number
+ *
+ * Description:	Match the next token as a number and return its value.
+ */
+
+static unsigned number()
+{
+    int value;
+
+
+    value = strtoul(expect(NUM).c_str(), NULL, 0);
+    return value;
+}
+
 
 /*
  * Function:	isSpecifier
@@ -105,17 +115,16 @@ static bool isSpecifier(int token)
 
 static int specifier()
 {
-	int spec = lookahead;
-    if (isSpecifier(lookahead))
-	{
-		match(lookahead);
-		return spec;
-	}
-    else
-    {
-		error("specifier");
-		return -1;
-	}
+    int typespec = ERROR;
+
+
+    if (isSpecifier(lookahead)) {
+	typespec = lookahead;
+	match(lookahead);
+    } else
+	error();
+
+    return typespec;
 }
 
 
@@ -129,15 +138,17 @@ static int specifier()
  *		  * pointers
  */
 
-static int pointers()
+static unsigned pointers()
 {
-	int count = 0;
-    while (lookahead == '*')
-    {
-		match('*');
-		count++;
-	}
-	return count;
+    unsigned count = 0;
+
+
+    while (lookahead == '*') {
+	match('*');
+	count ++;
+    }
+
+    return count;
 }
 
 
@@ -152,27 +163,21 @@ static int pointers()
  *		  pointers identifier [ num ]
  */
 
-static void declarator(int spec)
+static void declarator(int typespec)
 {
-    unsigned ind = pointers();
-    
-    string name = expect(ID);
+    unsigned indirection;
+    string name;
+
+
+    indirection = pointers();
+    name = expect(ID);
 
     if (lookahead == '[') {
 	match('[');
-	string length = expect(NUM);
+	declareVariable(name, Type(typespec, indirection, number()));
 	match(']');
-	//Parameters *params;
-	Type t(ARRAY, spec, ind);
-	t.length = atoi(length.c_str());
-	declareArray(name, t);
-    }
-    else
-    {
-    	//Parameters *params;
-    	Type t(SCALAR, spec, ind);
-    	declareVar(name, t);
-    }
+    } else
+	declareVariable(name, Type(typespec, indirection));
 }
 
 
@@ -193,12 +198,15 @@ static void declarator(int spec)
 
 static void declaration()
 {
-    int spec = specifier();
-    declarator(spec);
+    int typespec;
+
+
+    typespec = specifier();
+    declarator(typespec);
 
     while (lookahead == ',') {
 	match(',');
-	declarator(spec);
+	declarator(typespec);
     }
 
     match(';');
@@ -240,48 +248,54 @@ static void declarations()
  *		  expression , expression-list
  */
 
-static void primaryExpression()
+static Type primaryExpression(bool &lvalue)
 {
+    string name;
+    Type left;
+
     if (lookahead == '(') {
 	match('(');
-	expression();
+	left = expression(lvalue);
 	match(')');
 
     } else if (lookahead == STRING) {
 	match(STRING);
+	lvalue = false;
 
     } else if (lookahead == NUM) {
 	match(NUM);
+	lvalue = false;
 
     } else if (lookahead == ID) {
-	string name = expect(ID);
-	//Parameters *params;
-
-
+	name = expect(ID);
 
 	if (lookahead == '(') {
 	    match('(');
-	    Type t(FUNCTION, INT);
-	    useSymbol(name, t);
 
 	    if (lookahead != ')') {
-		expression();
+		left = expression(lvalue);
 
 		while (lookahead == ',') {
 		    match(',');
-		    expression();
+		    left = expression(lvalue);
 		}
 	    }
 
 	    match(')');
+	    lvalue = false;
+	    checkFunction(name);
 
-
+	} else
+	{
+		lvalue = true;
+	    checkIdentifier(name);
 	}
-	Type t(SCALAR);
-	useSymbol(name, t);
-
+	//return left;
     } else
-	error("primaryExpression");
+    {
+	error();
+	}
+	return left;
 }
 
 
@@ -295,16 +309,17 @@ static void primaryExpression()
  *		  postfix-expression [ expression ]
  */
 
-static void postfixExpression()
+static Type postfixExpression(bool &lvalue)
 {
-    primaryExpression();
+    Type left = primaryExpression(lvalue);
 
     while (lookahead == '[') {
 	match('[');
-	expression();
+	expression(lvalue);
 	match(']');
-	cout << "index" << endl;
+	lvalue = true;
     }
+    return left;
 }
 
 
@@ -322,35 +337,44 @@ static void postfixExpression()
  *		  sizeof prefix-expression
  */
 
-static void prefixExpression()
+static Type prefixExpression(bool &lvalue)
 {
+	Type left;
     if (lookahead == '!') {
 	match('!');
-	prefixExpression();
-	cout << "not" << endl;
+	//isPredicate
+	left = prefixExpression(lvalue);
+	lvalue = false;
 
     } else if (lookahead == '-') {
 	match('-');
-	prefixExpression();
-	cout << "neg" << endl;
+	//isPredicate
+	left = prefixExpression(lvalue);
+	lvalue = false;
 
     } else if (lookahead == '*') {
 	match('*');
-	prefixExpression();
-	cout << "deref" << endl;
+	//promote
+	left = prefixExpression(lvalue);
+	lvalue = false;
 
     } else if (lookahead == '&') {
 	match('&');
-	prefixExpression();
-	cout << "addr" << endl;
+
+	left = prefixExpression(lvalue);
+	lvalue = true;
 
     } else if (lookahead == SIZEOF) {
 	match(SIZEOF);
-	prefixExpression();
-	cout << "sizeof" << endl;
+	//isPredicate
+	left = prefixExpression(lvalue);
+	lvalue = false;
 
     } else
-	postfixExpression();
+   	{
+	left = postfixExpression(lvalue);
+	}
+	return left;
 }
 
 
@@ -368,29 +392,33 @@ static void prefixExpression()
  *		  multiplicative-expression % prefix-expression
  */
 
-static void multiplicativeExpression()
+static Type multiplicativeExpression(bool &lvalue)
 {
-    prefixExpression();
+    Type left = prefixExpression(lvalue);
 
     while (1) {
 	if (lookahead == '*') {
 	    match('*');
-	    prefixExpression();
-	    cout << "mul" << endl;
+	    Type right = prefixExpression(lvalue);
+	    left = checkMul(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == '/') {
 	    match('/');
-	    prefixExpression();
-	    cout << "div" << endl;
+	    Type right = prefixExpression(lvalue);
+	    left = checkDiv(left, right);
+	    lvalue = false;	
 
 	} else if (lookahead == '%') {
 	    match('%');
-	    prefixExpression();
-	    cout << "rem" << endl;
+	    Type right = prefixExpression(lvalue);
+	    left = checkRem(left, right);
+	    lvalue = false;
 
 	} else
 	    break;
     }
+    return left;
 }
 
 
@@ -405,24 +433,27 @@ static void multiplicativeExpression()
  *		  additive-expression - multiplicative-expression
  */
 
-static void additiveExpression()
+static Type additiveExpression(bool &lvalue)
 {
-    multiplicativeExpression();
+    Type left = multiplicativeExpression(lvalue);
 
     while (1) {
 	if (lookahead == '+') {
 	    match('+');
-	    multiplicativeExpression();
-	    cout << "add" << endl;
+	    Type right = multiplicativeExpression(lvalue);
+	    left = checkAdd(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == '-') {
 	    match('-');
-	    multiplicativeExpression();
-	    cout << "sub" << endl;
+	    Type right = multiplicativeExpression(lvalue);
+	    left = checkSub(left, right);
+	    lvalue = false;
 
 	} else
 	    break;
     }
+    return left;
 }
 
 
@@ -441,34 +472,39 @@ static void additiveExpression()
  *		  relational-expression >= additive-expression
  */
 
-static void relationalExpression()
+static Type relationalExpression(bool &lvalue)
 {
-    additiveExpression();
+    Type left = additiveExpression(lvalue);
 
     while (1) {
 	if (lookahead == '<') {
 	    match('<');
-	    additiveExpression();
-	    cout << "ltn" << endl;
+	    Type right = additiveExpression(lvalue);
+	    left = checkLT(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == '>') {
 	    match('>');
-	    additiveExpression();
-	    cout << "gtn" << endl;
+	    Type right = additiveExpression(lvalue);
+	    left = checkGT(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == LEQ) {
 	    match(LEQ);
-	    additiveExpression();
-	    cout << "leq" << endl;
+	    Type right = additiveExpression(lvalue);
+	    left = checkLEQ(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == GEQ) {
 	    match(GEQ);
-	    additiveExpression();
-	    cout << "geq" << endl;
+	    Type right = additiveExpression(lvalue);
+	    left = checkGEQ(left, right);
+	    lvalue = false;
 
 	} else
 	    break;
     }
+    return left;
 }
 
 
@@ -483,24 +519,28 @@ static void relationalExpression()
  *		  equality-expression != relational-expression
  */
 
-static void equalityExpression()
+static Type equalityExpression(bool &lvalue)
 {
-    relationalExpression();
+    Type left = relationalExpression(lvalue);
 
     while (1) {
 	if (lookahead == EQL) {
 	    match(EQL);
-	    relationalExpression();
-	    cout << "eql" << endl;
+	    Type right = relationalExpression(lvalue);
+	    left = checkEqual(left, right);
+	    lvalue = false;
 
 	} else if (lookahead == NEQ) {
 	    match(NEQ);
-	    relationalExpression();
-	    cout << "neq" << endl;
+	    Type right = relationalExpression(lvalue);
+	    left = checkNotEqual(left, right);
+	    lvalue = false;
+
 
 	} else
 	    break;
     }
+    return left;
 }
 
 
@@ -515,15 +555,18 @@ static void equalityExpression()
  *		  logical-and-expression && equality-expression
  */
 
-static void logicalAndExpression()
+static Type logicalAndExpression(bool &lvalue)
 {
-    equalityExpression();
+    Type left = equalityExpression(lvalue);
 
     while (lookahead == AND) {
 	match(AND);
-	equalityExpression();
-	cout << "and" << endl;
+	Type right = equalityExpression(lvalue);
+	left = checkLogicalAnd(left,right);
+	lvalue = false;
     }
+
+	return left;   
 }
 
 
@@ -539,15 +582,17 @@ static void logicalAndExpression()
  *		  expression || logical-and-expression
  */
 
-static void expression()
+static Type expression(bool &lvalue)
 {
-    logicalAndExpression();
+    Type left = logicalAndExpression(lvalue);
 
     while (lookahead == OR) {
 	match(OR);
-	logicalAndExpression();
-	cout << "or" << endl;
+	Type right = logicalAndExpression(lvalue);
+	left = checkLogicalOr(left,right);
+	lvalue = false;			//result of OR does not result in an lvalue
     }
+    return left;
 }
 
 
@@ -583,11 +628,12 @@ static void statements()
 
 static void assignment()
 {
-    expression();
+	bool lvalue;
+    expression(lvalue);
 
     if (lookahead == '=') {
 	match('=');
-	expression();
+	expression(lvalue);
     }
 }
 
@@ -610,25 +656,24 @@ static void assignment()
 
 static void statement()
 {
+	bool lvalue;
     if (lookahead == '{') {
-    //cout << "Open Block" << endl;
-    openScope();
 	match('{');
+	openScope();
 	declarations();
 	statements();
-	//cout << "Close Block" << endl;
 	closeScope();
 	match('}');
 
     } else if (lookahead == RETURN) {
 	match(RETURN);
-	expression();
+	expression(lvalue);
 	match(';');
 
     } else if (lookahead == WHILE) {
 	match(WHILE);
 	match('(');
-	expression();
+	expression(lvalue);
 	match(')');
 	statement();
 
@@ -637,7 +682,7 @@ static void statement()
 	match('(');
 	assignment();
 	match(';');
-	expression();
+	expression(lvalue);
 	match(';');
 	assignment();
 	match(')');
@@ -646,7 +691,7 @@ static void statement()
     } else if (lookahead == IF) {
 	match(IF);
 	match('(');
-	expression();
+	expression(lvalue);
 	match(')');
 	statement();
 
@@ -672,14 +717,21 @@ static void statement()
  *		  specifier pointers identifier
  */
 
-static void parameter(Parameters *params)
+static Type parameter()
 {
-    int spec = specifier();
-    unsigned ind = pointers();
-    string name = expect(ID);
-    Type t(FUNCTION, spec, ind, params);
-    declareVar(name, t);
-    params->push_back(t);
+    int typespec;
+    unsigned indirection;
+    string name;
+    Type type;
+
+
+    typespec = specifier();
+    indirection = pointers();
+    name = expect(ID);
+
+    type = Type(typespec, indirection);
+    declareVariable(name, type);
+    return type;
 }
 
 
@@ -700,52 +752,41 @@ static void parameter(Parameters *params)
  *		  , parameter remaining-parameters
  */
 
-static void parameters(Parameters *params)
+static Parameters *parameters()
 {
-	//string v;
-	int spec;
-    if (lookahead == VOID) 
-    {
-    	//cout << "void parameter:" << VOID << endl;
-		match(VOID);
-		spec = VOID;
-		if (lookahead == ')')
-		{
-	    	return;
-	    }
+    int typespec;
+    unsigned indirection;
+    Parameters *params;
+    string name;
+    Type type;
 
-		//spec = specifier();
-		
-    } 
-    else
-    {
-    	//cout << "post void parameter" << endl;
-    	spec = specifier();
+
+    openScope();
+    params = new Parameters();
+
+    if (lookahead == VOID) {
+	typespec = VOID;
+	match(VOID);
+
+	if (lookahead == ')')
+	    return params;
+
+    } else
+	typespec = specifier();
+
+    indirection = pointers();
+    name = expect(ID);
+
+    type = Type(typespec, indirection);
+    declareVariable(name, type);
+    params->push_back(type);
+
+    while (lookahead == ',') {
+	match(',');
+	params->push_back(parameter());
     }
-    
-	
-		//cout << "parameters 0" << endl;
-		//int spec = specifier();
-		//cout << "parameters 1" << endl;
 
-		//cout << "parameters 2" << endl;
-		//cout << "pre ind" << endl;
-	    unsigned ind = pointers();
-	    //cout << "parameters 3" << endl;
-	    string name = expect(ID);
-	    //cout << "parameters 4" << endl;
-	    Type t(SCALAR, spec, ind);
-	    //cout << "parameters 5: t = "<< t << endl;
-	    declareVar(name, t);
-	    //cout << "parameters 5.5" << endl;
-	    params->push_back(t);
-	    //cout << "parameters 6" << endl;
-	    while (lookahead == ',') {
-		match(',');
-		parameter(params);
-	    }
-	    
-	
+    return params;
 }
 
 
@@ -762,37 +803,28 @@ static void parameters(Parameters *params)
  *		  pointers identifier ( parameters )
  */
 
-static void globalDeclarator(int spec)
+static void globalDeclarator(int typespec)
 {
-    unsigned ind = pointers();
-    string name = expect(ID);
-    
-    //match(ID);
+    unsigned indirection;
+    string name;
+
+
+    indirection = pointers();
+    name = expect(ID);
 
     if (lookahead == '[') {
 	match('[');
-	string length = expect(NUM);
+	declareVariable(name, Type(typespec, indirection, number()));
 	match(']');
-	Parameters *params = new Parameters;
-	Type t(ARRAY, spec, ind, params);
-	t.length = atoi(length.c_str());
-	declareArray(name, t);
 
     } else if (lookahead == '(') {
 	match('(');
-	Parameters *params = new Parameters;
-	parameters(params);
+	declareFunction(name, Type(typespec, indirection, parameters()));
+	closeScope();
 	match(')');
-	Type t(FUNCTION, spec, ind, params);
-	declareFunc(name, t);
-	//open scope
-    }
-    else 
-    {	
-    	Parameters *params = new Parameters;
-    	Type t(SCALAR, spec, ind, params);
-    	declareVar(name, t);
-    }
+
+    } else
+	declareVariable(name, Type(typespec, indirection));
 }
 
 
@@ -806,16 +838,13 @@ static void globalDeclarator(int spec)
  * 		  , global-declarator remaining-declarators
  */
 
-static void remainingDeclarators(int spec)
+static void remainingDeclarators(int typespec)
 {
     while (lookahead == ',') {
-    //cout << "Open Remaining Declarators Scope" << endl;
-    //openRemDeclScope();
 	match(',');
-	globalDeclarator(spec);
+	globalDeclarator(typespec);
     }
-    //cout << "Close Remaining Declarators Scope" << endl;
-    //closeRemDeclScope();
+
     match(';');
 }
 
@@ -834,68 +863,45 @@ static void remainingDeclarators(int spec)
 
 static void topLevelDeclaration()
 {
-    int spec = specifier();
-    unsigned ind = pointers();
-    string name = expect(ID);
+    int typespec;
+    unsigned indirection;
+    Parameters *params;
+    string name;
+
+
+    typespec = specifier();
+    indirection = pointers();
+    name = expect(ID);
 
     if (lookahead == '[') {
-    //cout << "Open Global Scope" << endl;
-    //openGlobalScope();
 	match('[');
-	string length = expect(NUM);
+	declareVariable(name, Type(typespec, indirection, number()));
 	match(']');
-	//cout << "Close Global Scope" << endl;
-	//Parameters *params;
-	Type t(ARRAY, spec, ind);
-	t.length = atoi(length.c_str());
-	declareArray(name, t);
-	//closeGlobalScope();
-	remainingDeclarators(spec);
+	remainingDeclarators(typespec);
 
     } else if (lookahead == '(') {
-    //cout << "Open Function Scope" << endl;
 	match('(');
-	openScope();
-	//cout << "toplevel function declaration 1" << endl;
-	Parameters *params = new Parameters;
-	//cout << "toplevel function declaration 1.5" << endl;
-	parameters(params);
-	//cout << "toplevel function declaration 2" << endl;
+	params = parameters();
 	match(')');
 
-		if (lookahead == '{') {
-		    match('{');
-		    Type t(FUNCTION, spec, ind);
-		    // defineFunc(name, t);
-		    declarations();
-		    statements();
-		    //cout << "Close Function Scope" << endl;
-		    closeScope();
-		    defineFunc(name, t);
-		    match('}');
+	if (lookahead == '{') {
+	    defineFunction(name, Type(typespec, indirection, params));
+	    match('{');
+	    declarations();
+	    statements();
+	    closeScope();
+	    match('}');
 
-		} 
-		else
-		{
-			//cout << "Close Function Scope" << endl;
-			//cout << "declaring function" << endl;
-			Type t(FUNCTION, spec, ind, params);
-			// declareFunc(name, t);
-			closeScope();
-			declareFunc(name, t);
-		    remainingDeclarators(spec);
-		}
-
-    } 
-    else
-    {
-	    //closeFuncScope();
-	    //Parameters *params;
-	    Type t(SCALAR, spec, ind);
-		declareVar(name, t);
-	
-		remainingDeclarators(spec);
+	} else {
+	    closeScope();
+	    declareFunction(name, Type(typespec, indirection, params));
+	    remainingDeclarators(typespec);
 	}
+
+    } else {
+	declareVariable(name, Type(typespec, indirection));
+	remainingDeclarators(typespec);
+    }
 }
 
 
@@ -907,16 +913,12 @@ static void topLevelDeclaration()
 
 int main()
 {
-	//cout << "Opening Scope" << endl;
-	openScope();
+    openScope();
     lookahead = lexan(lexbuf);
 
     while (lookahead != DONE)
-    {
-		topLevelDeclaration();
-	}
-	//cout << "Closing Scope" << endl;
-	closeScope();
+	topLevelDeclaration();
+
+    closeScope();
     exit(EXIT_SUCCESS);
 }
-

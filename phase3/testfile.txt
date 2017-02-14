@@ -1,19 +1,10 @@
-/* functions.c */
+/* void.c */
 
-int foo(int x, int y);
-int bar(int x, void *p);
-
-int foo(int a, int b) {
-    bar(1, 0);
-    foobar();
+void f(void)
+{
 }
 
-char foo(int x);		/* conflicting types for 'foo' */
+void x;				/* 'x' has type void */
+void g(void y);			/* 'y' has type void */
+void *h(void);
 
-int bar(int a, void *q);
-
-int bar(int i, void *j) {
-}
-
-void foobar(void) {		/* conflicting types for 'foobar' */
-}
