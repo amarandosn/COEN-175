@@ -44,6 +44,11 @@ public:
     Type(int specifier, unsigned indirection, unsigned length);
     Type(int specifier, unsigned indirection, Parameters *parameters);
 
+    Type promote() const;
+    bool isPointer() const;
+    bool isPredicate() const;
+    bool isCompatible(const Type &left, const Type &right) const;
+
     bool operator ==(const Type &rhs) const;
     bool operator !=(const Type &rhs) const;
 

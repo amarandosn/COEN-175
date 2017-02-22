@@ -75,6 +75,44 @@ Type::Type(int specifier, unsigned indirection, Parameters *parameters)
     _kind = FUNCTION;
 }
 
+Type Type::promote() const
+{
+	//char to int case
+	if(_kind == SCALAR && _specifier == CHAR && _indirection == 0)
+	{
+		return Type(INT);
+	}
+
+	//array to pointer case
+	if(_kind == ARRAY)
+	{
+		return Type(SCALAR, _specifier, 1);
+	}
+	
+	return *this;	//default case
+}
+
+bool Type::isPointer() const
+{
+	//returns true if pointer
+	return promote()._indirection > 0;
+}
+
+bool Type::isPredicate() const
+{
+	//returns true if pointer(T) or INT
+	return (promote()._indirection > 0 || promote()._specifier == INT);
+}
+
+bool Type::isCompatible() const
+{
+	//return true if identical predicate types
+	//or one is pointer(T) and the other is pointer(void)
+	
+	return true;
+}
+
+
 
 /*
  * Function:	Type::operator ==

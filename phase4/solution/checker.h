@@ -37,8 +37,11 @@ Type checkNot(const Type &left);
 Type checkAddr(const Type &left, bool &lvalue);
 Type checkDeref(const Type &left);
 Type checkSizeof(const Type &left);
+// Type checkPrefix(const Type &left);
 Type checkPostfix(const Type &left, bool &lvalue);
 Type checkScalar(const Type &left, bool &lvalue);
+Type checkParen(const Type &left, bool &lvalue);
+Type checkFuncReturn(const Type &type);
 
 
 

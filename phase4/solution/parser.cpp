@@ -19,7 +19,7 @@ static int lookahead;
 static string lexbuf;
 
 static Type expression(bool &lvalue);
-static void statement();
+static void statement(const Type &type);
 
 
 /*
@@ -256,44 +256,60 @@ static Type primaryExpression(bool &lvalue)
     if (lookahead == '(') {
 	match('(');
 	left = expression(lvalue);
+	left = checkParen(left, lvalue);
 	match(')');
 
     } else if (lookahead == STRING) {
 	match(STRING);
+	left = primaryExpression(lvalue);
+	left = checkScalar(left, lvalue);
 	lvalue = false;
 
     } else if (lookahead == NUM) {
 	match(NUM);
+	left = primaryExpression(lvalue);
+	left = checkScalar(left, lvalue);
 	lvalue = false;
 
     } else if (lookahead == ID) {
-	name = expect(ID);
+		name = expect(ID);
 
-	if (lookahead == '(') {
-	    match('(');
+		Parameters *params = new Parameters;
+		if (lookahead == '(') {
+		    match('(');
 
-	    if (lookahead != ')') {
-		left = expression(lvalue);
+		    if (lookahead != ')') {
+				left = expression(lvalue);
+				
+				params->push_back(left);
+				while (lookahead == ',') {
+				    match(',');
+				    left = expression(lvalue);
+				    params->push_back(left);
+				}
+		    }
 
-		while (lookahead == ',') {
-		    match(',');
-		    left = expression(lvalue);
+		    match(')');
+		    lvalue = false;
+		    Symbol *checkFunc;
+		    checkFunc = checkFunction(name);
+		    Type funcType = checkFunc->type();
+		    left = checkFuncCall(funcType, *params);
+		} 
+		else
+		{
+			//identifier is lvalue if refers to scalar
+		    Symbol *checkID = checkIdentifier(name);
+		    if(checkID->type().isScalar())
+		    {
+		    	lvalue = true;
+		    }	
 		}
-	    }
-
-	    match(')');
-	    lvalue = false;
-	    checkFunction(name);
-
-	} else
-	{
-		lvalue = true;
-	    checkIdentifier(name);
-	}
-	//return left;
-    } else
+		//return left;
+    } 
+    else
     {
-	error();
+		error();
 	}
 	return left;
 }
@@ -315,7 +331,7 @@ static Type postfixExpression(bool &lvalue)
 
     while (lookahead == '[') {
 	match('[');
-	expression(lvalue);
+	left = expression(lvalue);
 	match(']');
 	lvalue = true;
     }
@@ -344,35 +360,42 @@ static Type prefixExpression(bool &lvalue)
 	match('!');
 	//isPredicate
 	left = prefixExpression(lvalue);
+	left = checkNot(left);
 	lvalue = false;
 
     } else if (lookahead == '-') {
 	match('-');
 	//isPredicate
 	left = prefixExpression(lvalue);
+	left = checkNeg(left);
 	lvalue = false;
 
     } else if (lookahead == '*') {
 	match('*');
 	//promote
 	left = prefixExpression(lvalue);
+	left = checkDeref(left);
 	lvalue = false;
 
     } else if (lookahead == '&') {
 	match('&');
 
 	left = prefixExpression(lvalue);
-	lvalue = true;
+	left = checkAddr(left, lvalue);
+	lvalue = false;
 
     } else if (lookahead == SIZEOF) {
 	match(SIZEOF);
 	//isPredicate
 	left = prefixExpression(lvalue);
+	left = checkSizeof(left);
 	lvalue = false;
 
     } else
    	{
 	left = postfixExpression(lvalue);
+	//left = checkPrefix(left);
+	lvalue = false;
 	}
 	return left;
 }
@@ -609,10 +632,10 @@ static Type expression(bool &lvalue)
  *		  statement statements
  */
 
-static void statements()
+static void statements(const Type &type)
 {
     while (lookahead != '}')
-	statement();
+	statement(type);
 }
 
 
@@ -629,11 +652,13 @@ static void statements()
 static void assignment()
 {
 	bool lvalue;
-    expression(lvalue);
+    Type left = expression(lvalue);
 
     if (lookahead == '=') {
 	match('=');
-	expression(lvalue);
+	Type right = expression(lvalue);
+	//left hand side must be lvalue
+	//isCompatible(left, right);
     }
 }
 
@@ -654,50 +679,55 @@ static void assignment()
  *		  assignment ;
  */
 
-static void statement()
+static void statement(const Type &type)
 {
+	//pass type of calling function down statement into statements (top level declaration, modify statement and statements)
 	bool lvalue;
     if (lookahead == '{') {
 	match('{');
 	openScope();
 	declarations();
-	statements();
+	statements(type);
 	closeScope();
 	match('}');
 
     } else if (lookahead == RETURN) {
 	match(RETURN);
-	expression(lvalue);
+	type = expression(lvalue);
+	type = checkFuncReturn(type);
 	match(';');
 
     } else if (lookahead == WHILE) {
 	match(WHILE);
 	match('(');
-	expression(lvalue);
+	type = expression(lvalue);
+	//isPredicate(type);
 	match(')');
-	statement();
+	statement(type);
 
     } else if (lookahead == FOR) {
 	match(FOR);
 	match('(');
 	assignment();
 	match(';');
-	expression(lvalue);
+	type = expression(lvalue);
+	//isPredicate(type);
 	match(';');
 	assignment();
 	match(')');
-	statement();
+	statement(type);
 
     } else if (lookahead == IF) {
 	match(IF);
 	match('(');
-	expression(lvalue);
+	type = expression(lvalue);
+	//isPredicate(type);
 	match(')');
-	statement();
+	statement(type);
 
 	if (lookahead == ELSE) {
 	    match(ELSE);
-	    statement();
+	    statement(type);
 	}
 
     } else {
@@ -868,6 +898,8 @@ static void topLevelDeclaration()
     Parameters *params;
     string name;
 
+    const Type type = Type();
+
 
     typespec = specifier();
     indirection = pointers();
@@ -888,7 +920,7 @@ static void topLevelDeclaration()
 	    defineFunction(name, Type(typespec, indirection, params));
 	    match('{');
 	    declarations();
-	    statements();
+	    statements(type);
 	    closeScope();
 	    match('}');
 

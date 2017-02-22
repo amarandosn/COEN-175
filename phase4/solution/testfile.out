@@ -6,6 +6,3 @@ i: int
 p: int *
 d: char
 s: char *
-printf: int()
-error+error
-error<error
