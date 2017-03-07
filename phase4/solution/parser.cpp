@@ -11,7 +11,7 @@
 # include "checker.h"
 # include "tokens.h"
 # include "lexer.h"
-# include "type.h"
+# include "Type.h"
 
 using namespace std;
 
@@ -250,28 +250,34 @@ static void declarations()
 
 static Type primaryExpression(bool &lvalue)
 {
+	cout << "primaryExpression() lvalue: " << lvalue << endl;
     string name;
     Type left;
 
     if (lookahead == '(') {
 	match('(');
+	//Type expr;
 	left = expression(lvalue);
-	left = checkParen(left, lvalue);
+	//left = checkParen(left, expr, lvalue);
+	//left = checkParen(left, lvalue);
 	match(')');
 
     } else if (lookahead == STRING) {
-	match(STRING);
-	left = primaryExpression(lvalue);
-	left = checkScalar(left, lvalue);
+	name = expect(STRING);
+	//left = primaryExpression(lvalue);
+	int length = name.length() - 2;
+	left = Type(CHAR, 0, length);
 	lvalue = false;
 
     } else if (lookahead == NUM) {
 	match(NUM);
-	left = primaryExpression(lvalue);
-	left = checkScalar(left, lvalue);
+	//left = primaryExpression(lvalue);
+	//left = checkScalar(left, lvalue);
+	left = Type(INT);
 	lvalue = false;
 
     } else if (lookahead == ID) {
+    	cout << "primaryExpression(): ID: " << lookahead << endl;
 		name = expect(ID);
 
 		Parameters *params = new Parameters;
@@ -279,13 +285,13 @@ static Type primaryExpression(bool &lvalue)
 		    match('(');
 
 		    if (lookahead != ')') {
-				left = expression(lvalue);
+				Type t = expression(lvalue);
 				
-				params->push_back(left);
+				params->push_back(t);
 				while (lookahead == ',') {
 				    match(',');
-				    left = expression(lvalue);
-				    params->push_back(left);
+				    t = expression(lvalue);
+				    params->push_back(t);
 				}
 		    }
 
@@ -295,21 +301,55 @@ static Type primaryExpression(bool &lvalue)
 		    checkFunc = checkFunction(name);
 		    Type funcType = checkFunc->type();
 		    left = checkFuncCall(funcType, *params);
+		    cout << "primaryExpression: ID Function Case Type: " << left << endl;
+		    return left;
 		} 
 		else
 		{
 			//identifier is lvalue if refers to scalar
 		    Symbol *checkID = checkIdentifier(name);
+		    left = checkID->type();
+		    cout << "IN PRIMARYEXPRESSION ID ELSE" << endl;
 		    if(checkID->type().isScalar())
 		    {
+		    	//left = Type(checkID->type().specifier(), checkID->type().indirection());
+		    	
 		    	lvalue = true;
+		    	cout << "IN PRIMARYEXPRESSION IS SCALAR LVALUE: " << lvalue << " Type: " << left << endl;
 		    }	
+		    else
+		    {
+		    	cout << "IN PRIMARYEXPRESSION NOT SCALAR LVALUE: " << left << endl;
+		    	lvalue = false;
+		    }
+		    // if(checkID->type().isArray())
+		    // {
+		    // 	cout << "primaryExpression() Array Case" << endl;
+		    // 	left = Type(checkID->type().specifier(), checkID->type().indirection());
+		    // }
+
+		    // if(checkID->type().isFunction())
+		    // {
+		    // 	cout << "primaryExpression() Function Case" << endl;
+		    // 	Parameters *params = new Parameters;
+		    // 	Symbol *checkFunc;
+			   //  checkFunc = checkFunction(name);
+			   //  Type funcType = checkFunc->type();
+			   //  left = checkFuncCall(funcType, *params);
+		    // 	//left = Type(checkID->type().specifier(), checkID->type().indirection(), params);
+		    // }
+		    Type t = left;
+
+		    cout << "primaryExpression() 1: " << t.isFunction() << endl;
 		}
-		//return left;
+		return left;
     } 
     else
     {
+    	cout << "primaryExpression() ERROR" << endl;
+    	//left = Type();
 		error();
+		return Type();
 	}
 	return left;
 }
@@ -327,14 +367,25 @@ static Type primaryExpression(bool &lvalue)
 
 static Type postfixExpression(bool &lvalue)
 {
-    Type left = primaryExpression(lvalue);
 
+	cout << "postfix lvalue: " << lvalue << endl;
+    Type left = primaryExpression(lvalue);
+    //cout << "postfixExpression() 1" << endl;
+    Type expr;
+    //cout << "postfixExpression() 2" << endl;
     while (lookahead == '[') {
+    //cout << "postfixExpression() 3" << endl;	
 	match('[');
-	left = expression(lvalue);
+	//cout << "postfixExpression() 4" << endl;	
+	expr = expression(lvalue);
+	//cout << "postfixExpression() 5" << endl;
+
+	//cout << "postfixExpression() 6" << endl;
 	match(']');
+	left = checkPostfix(left, expr, lvalue);
 	lvalue = true;
     }
+    //cout << "postfixExpression() 7" << endl;
     return left;
 }
 
@@ -355,6 +406,7 @@ static Type postfixExpression(bool &lvalue)
 
 static Type prefixExpression(bool &lvalue)
 {
+	cout << "prefix lvalue: " << lvalue << endl;
 	Type left;
     if (lookahead == '!') {
 	match('!');
@@ -366,6 +418,7 @@ static Type prefixExpression(bool &lvalue)
     } else if (lookahead == '-') {
 	match('-');
 	//isPredicate
+	//left = prefixExpression(lvalue);
 	left = prefixExpression(lvalue);
 	left = checkNeg(left);
 	lvalue = false;
@@ -373,21 +426,25 @@ static Type prefixExpression(bool &lvalue)
     } else if (lookahead == '*') {
 	match('*');
 	//promote
+	//left = prefixExpression(lvalue);
 	left = prefixExpression(lvalue);
 	left = checkDeref(left);
-	lvalue = false;
+	lvalue = true;
 
     } else if (lookahead == '&') {
 	match('&');
 
+	//left = prefixExpression(lvalue);
 	left = prefixExpression(lvalue);
+	cout << "in prefixExpr(): lvalue: " << lvalue << endl;
 	left = checkAddr(left, lvalue);
 	lvalue = false;
 
     } else if (lookahead == SIZEOF) {
 	match(SIZEOF);
 	//isPredicate
-	left = prefixExpression(lvalue);
+	//left = prefixExpression(lvalue);
+	left = prefixExpression(lvalue); 
 	left = checkSizeof(left);
 	lvalue = false;
 
@@ -395,7 +452,7 @@ static Type prefixExpression(bool &lvalue)
    	{
 	left = postfixExpression(lvalue);
 	//left = checkPrefix(left);
-	lvalue = false;
+	//lvalue = false;
 	}
 	return left;
 }
@@ -417,6 +474,7 @@ static Type prefixExpression(bool &lvalue)
 
 static Type multiplicativeExpression(bool &lvalue)
 {
+	cout << "multiplicative lvalue: " << lvalue << endl;
     Type left = prefixExpression(lvalue);
 
     while (1) {
@@ -458,6 +516,7 @@ static Type multiplicativeExpression(bool &lvalue)
 
 static Type additiveExpression(bool &lvalue)
 {
+	cout << "additive lvalue: " << lvalue << endl;
     Type left = multiplicativeExpression(lvalue);
 
     while (1) {
@@ -497,6 +556,7 @@ static Type additiveExpression(bool &lvalue)
 
 static Type relationalExpression(bool &lvalue)
 {
+	cout << "relational lvalue: " << lvalue << endl;
     Type left = additiveExpression(lvalue);
 
     while (1) {
@@ -544,6 +604,7 @@ static Type relationalExpression(bool &lvalue)
 
 static Type equalityExpression(bool &lvalue)
 {
+	cout << "equality lvalue: " << lvalue << endl;
     Type left = relationalExpression(lvalue);
 
     while (1) {
@@ -580,11 +641,13 @@ static Type equalityExpression(bool &lvalue)
 
 static Type logicalAndExpression(bool &lvalue)
 {
+	cout << "logicalAnd lvalue: " << lvalue << endl;
     Type left = equalityExpression(lvalue);
 
     while (lookahead == AND) {
 	match(AND);
 	Type right = equalityExpression(lvalue);
+	cout << "logicalAndExpression(): left is function: " << left.isFunction() << endl;
 	left = checkLogicalAnd(left,right);
 	lvalue = false;
     }
@@ -607,14 +670,20 @@ static Type logicalAndExpression(bool &lvalue)
 
 static Type expression(bool &lvalue)
 {
+	cout << "expression lvalue: " << lvalue << endl;
     Type left = logicalAndExpression(lvalue);
-
+    //cout << "expression 1" << endl;
     while (lookahead == OR) {
 	match(OR);
+	//cout << "expression 2" << endl;
 	Type right = logicalAndExpression(lvalue);
+	//cout << "expression 3" << endl;
+	cout << "expression(): left is function: " << left.isFunction() << endl;
 	left = checkLogicalOr(left,right);
+	//cout << "expression 4" << endl;
 	lvalue = false;			//result of OR does not result in an lvalue
     }
+    //cout << "expression 5" << endl;
     return left;
 }
 
@@ -651,14 +720,16 @@ static void statements(const Type &type)
 
 static void assignment()
 {
-	bool lvalue;
+	bool lvalue = false;
+	bool rvalue = false;
+	
     Type left = expression(lvalue);
 
     if (lookahead == '=') {
 	match('=');
-	Type right = expression(lvalue);
+	Type right = expression(rvalue);
 	//left hand side must be lvalue
-	//isCompatible(left, right);
+	checkAssignment(left, right, lvalue);
     }
 }
 
@@ -682,7 +753,7 @@ static void assignment()
 static void statement(const Type &type)
 {
 	//pass type of calling function down statement into statements (top level declaration, modify statement and statements)
-	bool lvalue;
+	bool lvalue = false;
     if (lookahead == '{') {
 	match('{');
 	openScope();
@@ -693,41 +764,49 @@ static void statement(const Type &type)
 
     } else if (lookahead == RETURN) {
 	match(RETURN);
-	type = expression(lvalue);
-	type = checkFuncReturn(type);
+	Type t;
+	t = expression(lvalue);
+	cout << "-------------------statements function type: " << type << ", return type: " << t << endl;
+	checkFuncReturn(type, t);
 	match(';');
 
     } else if (lookahead == WHILE) {
 	match(WHILE);
 	match('(');
-	type = expression(lvalue);
+	Type t = type;
+	t = expression(lvalue);
 	//isPredicate(type);
+	checkWFI(t);
 	match(')');
-	statement(type);
+	statement(t);
 
     } else if (lookahead == FOR) {
 	match(FOR);
 	match('(');
 	assignment();
 	match(';');
-	type = expression(lvalue);
+	Type t = type;
+	t = expression(lvalue);
+	checkWFI(t);
 	//isPredicate(type);
 	match(';');
 	assignment();
 	match(')');
-	statement(type);
+	statement(t);
 
     } else if (lookahead == IF) {
 	match(IF);
 	match('(');
-	type = expression(lvalue);
+	Type t = type;
+	t = expression(lvalue);
+	checkWFI(t);
 	//isPredicate(type);
 	match(')');
-	statement(type);
+	statement(t);
 
 	if (lookahead == ELSE) {
 	    match(ELSE);
-	    statement(type);
+	    statement(t);
 	}
 
     } else {
@@ -898,7 +977,7 @@ static void topLevelDeclaration()
     Parameters *params;
     string name;
 
-    const Type type = Type();
+    Type type = Type();
 
 
     typespec = specifier();
@@ -917,7 +996,9 @@ static void topLevelDeclaration()
 	match(')');
 
 	if (lookahead == '{') {
-	    defineFunction(name, Type(typespec, indirection, params));
+	    Symbol *s = defineFunction(name, Type(typespec, indirection, params));
+	    type = s->type();
+	    cout << "###################    topLevelDeclaration(): type: " << type << endl;
 	    match('{');
 	    declarations();
 	    statements(type);

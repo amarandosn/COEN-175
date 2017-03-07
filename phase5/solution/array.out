@@ -1,0 +1,13 @@
+	.comm	 a,40,4
+	.comm	 print_array, 4, 4
+.globl main
+	pushl	%rbp
+	movl	%rsp, %rbp
+	subl	0, %esp
+0
+	movl	n
+, %eax
+	movl		movl	%eax, $10
+
+	pushl	n
+

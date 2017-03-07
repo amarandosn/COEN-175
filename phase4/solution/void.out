@@ -1,0 +1,283 @@
+i: int
+j: int
+k: int
+ip: int *
+iq: int *
+vp: void *
+vq: void *
+main: int(void)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+int *==int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+void *!=void *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+void * < void *
+checkLT 1
+checkLT 2void *, void *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+void * < int *
+checkLT 1
+checkLT 3
+checkLT 4
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+int * > void *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+checkAdd(): void * + int
+checkAdd 4
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+checkSub(): void * - void *
+checkSub 5
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+checkAssignment(): int *, int * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+checkAdd(): int * + int
+checkSub 2
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+checkDeref(): *int *
+checkDeref(): not pointer to void
+checkDeref(): deref type: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+checkDeref(): *void *
+expression 1
+expression 5

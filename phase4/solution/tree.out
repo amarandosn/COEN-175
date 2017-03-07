@@ -1,0 +1,2012 @@
+n: int
+malloc: void *(int)
+null: void *
+root: void **
+data: void *
+insert: void *(void **, void *)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+checkNot(): !void **
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+sizeof(void **)
+checkMul(): int * int
+expression 1
+expression 5
+checkFuncCall: void *(int), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkAssignment(): void *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkAssignment(): void *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkAssignment(): void *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+void * < void *
+checkLT 1
+checkLT 2void *, void *
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+void * > void *
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+checkFuncReturn(): Return Type: void **, Function Type: int
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: void **, Function Type: int
+checkFuncReturn() 4
+root: void **
+data: void *
+search: int(void **, void *)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+checkNot(): !void **
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncReturn(): Return Type: int, Function Type: int
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: int, Function Type: int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+void * < void *
+checkLT 1
+checkLT 2void *, void *
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkFuncCall: int(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkFuncReturn(): Return Type: int, Function Type: int
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: int, Function Type: int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+void * > void *
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkFuncCall: int(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkFuncReturn(): Return Type: int, Function Type: int
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: int, Function Type: int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncReturn(): Return Type: int, Function Type: int
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: int, Function Type: int
+root: void **
+preorder: void(void **)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+checkWFI(): void **
+checkWFI():2  void **
+p: int *
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkAssignment(): int *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+checkDeref(): *int *
+checkDeref(): not pointer to void
+checkDeref(): deref type: int
+expression 1
+expression 5
+printf: int()
+checkFuncCall: int(), arg size: 2
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+root: void **
+inorder: void(void **)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+checkWFI(): void **
+checkWFI():2  void **
+p: int *
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkAssignment(): int *, void * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+checkDeref(): *int *
+checkDeref(): not pointer to void
+checkDeref(): deref type: int
+expression 1
+expression 5
+checkFuncCall: int(), arg size: 2
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+expression 1
+expression 5
+checkPostfix(): void **, int
+checkPostFix() 1
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+main: int(void)
+root: void **
+a: int[10]
+i: int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+int < int
+checkLT 1
+checkLT 2int, int
+expression 1
+expression 5
+checkWFI(): int
+checkWFI():2  int
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+checkAdd(): int + int
+checkSub 1
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void *
+primaryExpression() 1: void *
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkFuncCall: void *(void **, void *), arg size: 2
+checkFuncCall: params matches args
+expression 1
+expression 5
+checkAssignment(): void **, void * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncCall: int(), arg size: 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncCall: int(), arg size: 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: void **
+primaryExpression() 1: void **
+expression 1
+expression 5
+checkFuncCall: void(void **), arg size: 1
+checkFuncCall: params matches args
+expression 1
+expression 5

@@ -40,8 +40,8 @@ static string void_object = "'%s' has type void";
 static string invReturn = "invalid return type";
 static string invTest = "invalid type for test expression";
 static string lvalueReq = "lvalue required in expression";
-static string invBinary = "invalid operands to binary operator";
-static string invUnary = "invalid operands to unary operator";
+static string invBinary = "invalid operands to binary %s";
+static string invUnary = "invalid operands to unary %s";
 static string notFunction = "called object is not a function";
 static string invArgs = "invalid arguments to called function";
 
@@ -215,40 +215,160 @@ Symbol *checkFunction(const string &name)
 
 Type checkFuncCall(const Type &funcType, const Parameters &args)
 {
-    cout << funcType.parameters()->size() << "-" << args.size() << endl;
+    //cout << funcType.parameters()->size() << "-" << args.size() << endl;
+    cout << "checkFuncCall: " << funcType << ", arg size: " << args.size() << endl;
     //identifier must have type "function returning T"
     //result is type T
     //else, report(notFunction);
     //arguments must be predicate types, number of params and args must agree and types must be compatible
     //else, report(invArgs);
-    return funcType;
+    cout << "checkFuncCall 2" << endl;
+    if(funcType == Type())
+    {
+        return Type();
+    }
+    cout << "checkFuncCall 3" << endl;
+    Type t = Type();
+    if(funcType.isFunction())
+    {
+        t = Type(funcType.specifier());
+    }
+    else
+    {
+        //funcType = Type();
+        report(notFunction);
+        return Type();
+    }
+    cout << "checkFuncCall 4" << endl;
+    //if params null
+    Parameters *p = funcType.parameters();
+    if(p != NULL)
+    {
+        if(funcType.parameters()->size() == args.size())
+        {
+            cout << "checkFuncCall: params size matches args" << endl;
+            for(unsigned i = 0; i < args.size(); i++)
+            {
+                if(args[i].isPredicate())
+                {
+                    if(t.isCompatible((*p)[i],args[i]))  //is compatible
+                    {
+                        cout << "checkFuncCall: iscompatible: " << (*p)[i] << ", " << args[i] << endl;                                               
+                        t = Type(funcType.specifier(), funcType.indirection());
+                        cout << "checkFuncCall: function type: " << t << endl;
+                        return t;
+                    }
+                    else
+                    {
+                        //not compatible
+                        report(invArgs);
+                        t = Type();
+                    }
+                }
+                else
+                {
+                    //not predicates
+                    report(invArgs);
+                    t = Type();
+                }
+
+            }
+            return Type(funcType.specifier(), funcType.indirection());
+        }
+        else
+        {
+            //# of params and args don't match
+            report(invArgs);
+            return Type();
+        }
+    }
+    
+    return t;
+      
 }
 
 Type checkLogicalOr(const Type &left, const Type &right)
 {
-    cout << left << "||" << right << endl;
+    cout << "checkLogicalOr(): " << left << "||" << right << endl;
     //ispredicate after any promotion
-    //returns int
-    //else, report(invBinary);
-    return left;
+    //cout << "checkOr 1" << endl;
+    if(left == Type() || right == Type())
+    {
+        //cout << "checkOr 2" << endl;
+        return Type();
+    }
+    //cout << "checkOr 3" << endl;
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    //cout << "checkOr 4" << endl;
+    if(!t.isPredicate() || !s.isPredicate())
+    {
+        //cout << "checkOr 5" << endl;
+        report(invBinary, "||");
+        return Type();
+    }
+    //cout << "checkOr 6" << endl;
+    t = Type(INT);
+
+    return t;
 }
 
 Type checkLogicalAnd(const Type &left, const Type &right)
 {
-    cout << left << "&&" << right << endl;
+    cout << "checkLogicalAnd(): " << left << "&&" << right << left.isFunction() << endl;
     //ispredicate after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+    if(left.isPredicate())
+    {
+        cout << "checklogicaland: left is predicate" << endl;
+    }
+
+    if(!t.isPredicate() || !s.isPredicate())
+    {
+        report(invBinary, "&&");
+        return Type();
+    }
+
+    //t = Type(INT);
+
+    return Type(INT);
 }
 
 Type checkEqual(const Type &left, const Type &right)
 {
     cout << left << "==" << right << endl;
+
     //iscompatible after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }
+    Type t, s, x;
+    t = left.promote();
+    s = right.promote();
+
+    if(!x.isCompatible(t, s))
+    {
+        report(invBinary, "==");
+        return Type();
+    }
+
+    t = Type(INT);
+    return t;
 }
 
 Type checkNotEqual(const Type &left, const Type &right)
@@ -257,7 +377,22 @@ Type checkNotEqual(const Type &left, const Type &right)
     //iscompatible after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }
+    Type t, s, x;
+    t = left.promote();
+    s = right.promote();
+
+    if(!x.isCompatible(t, s))
+    {
+        report(invBinary, "!=");
+        return Type();
+    }
+
+    t = Type(INT);
+    return t;
 }
 
 Type checkLEQ(const Type &left, const Type &right)
@@ -266,103 +401,367 @@ Type checkLEQ(const Type &left, const Type &right)
     //identical predicate types after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == s)
+    {   
+        t = Type(INT);
+        return t;
+    }
+    else
+    {
+        report(invBinary, "<=");
+        t = Type();
+    }
+    return t;
 }
 Type checkGEQ(const Type &left, const Type &right)
 {
-    cout << left << ">=" << right << endl;
+    cout << left << " >= " << right << endl;
     //identical predicate types after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }    
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == s)
+    {   
+        t = Type(INT);
+        return t;
+    }
+    else
+    {
+        report(invBinary, ">=");
+        t = Type();
+    }
+    return t;
 }
 Type checkLT(const Type &left, const Type &right)
 {
-    cout << left << "<" << right << endl;
+    cout << left << " < " << right << endl;
     //identical predicate types after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }    
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+    cout << "checkLT 1" << endl;
+    if(t == s)
+    {   
+        cout << "checkLT 2" << t << ", " << s << endl;
+        t = Type(INT);
+        return t;
+    }
+    else
+    {
+        cout << "checkLT 3" << endl;
+        report(invBinary, "<");
+        t = Type();
+    }
+    cout << "checkLT 4" << endl;
+    return t;
 }
 Type checkGT(const Type &left, const Type &right)
 {
-    cout << left << ">" << right << endl;
+    cout << left << " > " << right << endl;
     //identical predicate types after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }    
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == s)
+    {   
+        t = Type(INT);
+        return t;
+    }
+    else
+    {
+        report(invBinary, ">");
+        t = Type();
+    }
+    return t;
 }
 
 Type checkAdd(const Type &left, const Type &right)
 {
-    cout << left << "+" << right << endl;
+
+    cout << "checkAdd(): " << left << " + " << right << endl;
     //if both operands have type int, result is int
     //if left is pointer(T), where T != void, and right is INT, result is pointer(T)
     //if left is INT and right is pointer(T) where T != void, then result is pointer(T)
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }   
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == Type(INT) && s == Type(INT))
+    {
+        cout << "checkSub 1" << endl;
+        return Type(INT);
+    }
+    else if(t.isPointer() && !t.isPtrToNull() && s == Type(INT))
+    {
+        cout << "checkSub 2" << endl;
+        return t;
+    }
+    else if(s.isPointer() && !s.isPtrToNull() && t == Type(INT))
+    {
+        cout << "checkAdd 3" << endl;
+        return s;
+    }
+    else 
+    {
+        cout << "checkAdd 4" << endl;
+        report(invBinary, "+");
+        t = Type();
+    }
+        
+    return t;
 }
 Type checkSub(const Type &left, const Type &right)
 {
-    cout << left << "-" << right << endl;
+    cout << "checkSub(): " << left << " - " << right << endl;
     //if both operands have type int, result is int
     //if left is pointer(T), where T != void, and right is INT, result is pointer(T)
     //if both operands are pointer(T) where T != void but identical for both operands, result is int
     //else, report(invBinary);   
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }   
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == Type(INT) && s == Type(INT))
+    {
+        cout << "checkSub 1" << endl;
+        return Type(INT);
+    }
+    else if(t.isPointer() && !t.isPtrToNull() && s == Type(INT))
+    {
+        cout << "checkSub 2" << endl;
+        return t;
+    }
+    else if(t.isPointer() && !t.isPtrToNull() && s.isPointer() && !s.isPtrToNull())
+    {
+        cout << "checkSub 3" << endl;
+        if(s == t)
+        {
+            cout << "checkSub 4" << endl;
+            return Type(INT);
+        }
+        else
+        {
+            report(invBinary, "-");
+            t = Type();
+        }
+    }
+    else 
+    {
+        cout << "checkSub 5" << endl;
+        report(invBinary, "-");
+        t = Type();
+    }
+        
+    return t;
 }
 Type checkMul(const Type &left, const Type &right)
 {
-    cout << left << "*" << right << endl;
+    cout << "checkMul(): " <<left << " * " << right << endl;
     //both types must be int after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }   
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == Type(INT) && s == Type(INT))
+    {
+        return Type(INT);
+    }
+    else
+    {
+        report(invBinary, "*");
+        t = Type();
+    }
+    return t;
 }
 Type checkDiv(const Type &left, const Type &right)
 {
-    cout << left << "/" << right << endl;
+    cout << "checkDiv(): " << left << " / " << right << endl;
     //both types must be int after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }   
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == Type(INT) && s == Type(INT))
+    {
+        return Type(INT);
+    }
+    else
+    {
+        report(invBinary, "*");
+        t = Type();
+    }
+    return t;
 }
 Type checkRem(const Type &left, const Type &right)
 {
-    cout << left << "%%" << right << endl;
+    cout << "checkRem(): " << left << " %% " << right << endl;
     //both types must be int after any promotion
     //returns int
     //else, report(invBinary);
-    return left;
+    if(left == Type() || right == Type())
+    {
+        return Type();
+    }   
+
+    Type t, s;
+    t = left.promote();
+    s = right.promote();
+
+    if(t == Type(INT) && s == Type(INT))
+    {
+        return Type(INT);
+    }
+    else
+    {
+        report(invBinary, "%%");
+        t = Type();
+    }
+    return t;
 }
 Type checkNeg(const Type &left)
 {
-    cout << "-" << left << endl;
+    cout << "checkNeg(): " << "-" << left << endl;
     //operand must be type INT
     //result has type INT
     //else, report(invUnary);
+    if(left == Type())
+    {
+        return Type();
+    }   
+
+
+    if(left == Type(INT))
+        return left;
+    else
+    {
+        report(invUnary, "-");
+        return Type();
+    }
     return left;
 }
 Type checkNot(const Type &left)
 {
-    cout << "!" << left << endl;
+    cout << "checkNot(): " << "!" << left << endl;
     //operand must have predicate type
     //result is int
     //else, report(invUnary);
+    if(left == Type())
+    {
+        return Type();
+    }   
+
+    if(left.isPredicate())
+        return Type(INT);
+    else
+    {
+        report(invUnary, "!");
+        return Type();
+    }
     return left;
 }
 Type checkAddr(const Type &left, bool &lvalue)
 {
-    cout << "&" << left << endl;
+    cout << "checkAddr(): &" << left << " lvalue: " << lvalue << endl;
     //operand must be lvalue
     //if operand has type T, then result has type pointer(T), not lvalue
+    if(left == Type())
+    {
+        return Type();
+    } 
+    if(!lvalue)
+    {
+        report(lvalueReq);
+        return Type();
+    }
+    else
+    {
+        return Type(left.specifier(), left.indirection()+1);
+    }
     return left;
 }
 Type checkDeref(const Type &left)
 {
-    cout << "*" << left << endl;
+    cout << "checkDeref(): " << "*" << left << endl;
     //operand must be pointer(T) after any promotion, where T != void
     //result is type T
+
+    if(left == Type())
+    {
+        return Type();
+    }   
+    Type t;
+    t = left.promote();
+
+    if(t.isPointer() && !t.isPtrToNull())
+    {
+        cout << "checkDeref(): not pointer to void" << endl;
+        t = Type(t.specifier(), t.indirection()-1);
+        cout << "checkDeref(): deref type: " << t << endl;
+        return t;
+    }
+    else
+    {
+        report(invUnary, "*");
+        return Type();
+    }
+
     return left;
 }
 Type checkSizeof(const Type &left)
@@ -370,6 +769,18 @@ Type checkSizeof(const Type &left)
     cout << "sizeof(" << left << ")" << endl;
     //operand must be predicate type
     //result is int
+    if(left == Type())
+    {
+        return Type();
+    }   
+
+    if(left.isPredicate())
+        return Type(INT);
+    else
+    {
+        report(invUnary, "sizeof");
+        return Type();
+    }
     return left;
 }
 
@@ -379,36 +790,138 @@ Type checkSizeof(const Type &left)
 //     return left;
 // }
 
-Type checkPostfix(const Type &left, bool &lvalue)
+Type checkPostfix(const Type &left, const Type &expr, bool &lvalue)
 {
-    cout << "POSTFIX: " << left << endl;
+    cout << "checkPostfix(): " << left << ", " << expr << endl;
     //left must be pointer(T) after any promotion where T != void
     //expression must have type int
     //result has type T
+    if(left == Type() || expr == Type())
+    {
+        return Type();
+    }   
+    Type t, s;
+    t = left.promote();
+    s = expr.promote();
+    if(t.isPointer() && !t.isPtrToNull() && (s == Type(INT)))
+    {
+        cout << "checkPostFix() 1" << endl;
+        return Type(t.specifier(), t.indirection()-1);
+    }
+    else
+    {
+        report(invBinary, "[]");
+        return Type();
+    }
+
+
     return left;
 }
 
-Type checkScalar(const Type &left, bool &lvalue)
-{
-    cout << "SCALAR: " << left << endl;
-    //Number case: type int, not lvalue
-    //String Lit case: type "array of char", not an lvalue
-    return left;
-}
+// Type checkScalar(const Type &left, string name, int length)
+// {
+//     cout << "SCALAR: " << left << endl;
+//     //Number case: type int, not lvalue
+//     //String Lit case: type "array of char", not an lvalue
 
-Type checkParen(const Type &left, bool &lvalue)
+//     if(name == STRING)
+
+//     return left;
+// }
+
+Type checkParen(const Type &left, const Type &expr, bool &lvalue)
 {
-    cout << "Parenthesized Expression " << left << endl;
+    cout << "checkParen(): "  << left << endl;
     //type is same as expression
     //is lvalue if expression itself is lvalue
+    if(left == Type() || expr == Type())
+    {
+        return Type();
+    }
+    if(left == expr)
+        return left;
+
+
     return left;
 }
 
-Type checkFuncReturn(const Type &type)
+void checkFuncReturn(const Type &type, const Type &ret)
 {
-    cout << "Return statement: " << type << endl;
+    cout << "checkFuncReturn(): Return Type: "<< ret << ", Function Type: " << type << endl;
     //type of expression must be compatible with return type of enclosing function
     //else, report(invReturn);
-    return type;
+    cout << "checkFuncReturn() 1" << endl;
+    if(type == Type() || ret == Type())
+        return;
+    Type t = type;
+    //Type t1 = type.promote();
+    //cout << "checkFuncReturn() 2" << endl;
+    //Parameters *params = new Parameters;
+    if(t.isFunction())
+    {
+        
+        t = checkFuncCall(t, *(t.parameters()));
+        cout << "checkFuncReturn(): Function is function type: " << t << endl;
+    }
+    // if(t.isFunction())
+    // {
+    //     cout << "checkFuncReturn() 2: return val is function" << endl;
+    //     params = t.parameters();
+    //     t = checkFuncCall(t, *params);
+        
+    // }
+    cout << "checkFuncReturn() 3: Type Type: "<< t << ", Return Type: " << ret << endl;
+    //t = checkFuncCall(t, *params);
+    //cout << "checkFuncReturn() 4" << endl;
+
+    if(!t.isCompatible(t,ret))
+    {
+        cout << "checkFuncReturn() 4" << endl;
+        report(invReturn);
+        return;
+    }
+    cout << "checkFuncReturn(): was compatible." << endl;
+
+    return;
 }
 
+void checkWFI(const Type &type)
+{
+    cout << "checkWFI(): " << type << endl;
+    if(type == Type())
+    {
+        cout << "In checkWFI(): Type is error" << endl;
+        report(invTest);
+        return;
+    }
+    Type t;
+    t = type.promote();
+    cout << "checkWFI():2  " << t << endl;
+    if(!t.isPredicate())
+        report(invTest);
+    return;
+}
+
+void checkAssignment(const Type &left, const Type &right, bool &lvalue)
+{
+    
+    //lhs must be lvalue, else report(lvalueReq);
+    //types of two sides must be compatible
+
+    if(left == Type() || right == Type())
+        return;
+    cout << "checkAssignment(): " << left << ", " << right << " lvalue: " << lvalue << endl;
+    if(!lvalue)
+    {
+        report(lvalueReq);
+        return;
+    }
+    
+    Type t;
+    if(!t.isCompatible(left, right))
+        report(invBinary, "=");
+    else
+        cout << "checkAssignment was compatible" << endl;
+    return;
+
+}

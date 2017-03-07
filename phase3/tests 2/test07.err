@@ -1,0 +1,3 @@
+line 5: redeclaration of 'a'
+line 16: 'e' undeclared
+line 21: conflicting types for 'bar'

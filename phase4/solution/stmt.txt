@@ -1,0 +1,53 @@
+f: int **(void)
+p: int *
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+checkFuncReturn(): Return Type: int *, Function Type: int **(void)
+checkFuncReturn() 1
+checkFuncReturn() 3: Return Type: int *, Function Type: int **(void)
+checkFuncReturn() 4
+main: int(void)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int(void)
+primaryExpression() 1: int(void)
+expression 1
+expression 5
+checkWFI(): int(void)
+checkWFI():2  int(void)
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+checkFuncCall: int(void), arg size: 0
+checkFuncCall: params matches args
+expression 1
+expression 5

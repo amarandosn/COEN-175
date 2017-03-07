@@ -1,0 +1,706 @@
+x: int
+y: int *
+foo: int(int, int *)
+a: int[10]
+i: int
+p: int *
+d: char
+s: char *
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char
+primaryExpression() 1: char
+in prefixExpr(): lvalue: 1
+checkAddr(): &char lvalue: 1
+expression 1
+expression 5
+checkAssignment(): int *, char * lvalue: 1
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+in prefixExpr(): lvalue: 0
+checkAddr(): &int[10] lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkAssignment(): int *, int * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+checkAssignment(): int *, int * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char
+primaryExpression() 1: char
+expression 1
+expression 5
+checkAssignment(): int, char lvalue: 1
+promote(): char to int
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char
+primaryExpression() 1: char
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+checkAssignment(): char, int lvalue: 1
+promote(): char to int
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkPostfix(): int[10], int
+checkPostFix() 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+checkPostfix(): int[10], int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncCall: int, arg size: 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+printf: int()
+checkFuncCall: int(), arg size: 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char *
+primaryExpression() 1: char *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char
+primaryExpression() 1: char
+in prefixExpr(): lvalue: 1
+checkAddr(): &char lvalue: 1
+expression 1
+expression 5
+checkAssignment(): char *, char * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+checkDeref(): *int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+checkDeref(): *int[10]
+checkDeref(): not pointer to void
+checkDeref(): deref type: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkAssignment(): int, int lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+checkAdd(): int * + int
+checkSub 2
+expression 1
+expression 5
+checkAssignment(): int *, int * lvalue: 1
+checkAssignment was compatible
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int(int, int *)
+primaryExpression() 1: int(int, int *)
+int * < int(int, int *)
+checkLT 1
+checkLT 3
+checkLT 4
+expression 1
+expression 5
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int
+primaryExpression() 1: int
+in prefixExpr(): lvalue: 1
+checkAddr(): &int lvalue: 1
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: int *
+primaryExpression() 1: int *
+expression 1
+expression 5
+checkAssignment(): int *, int * lvalue: 0
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION IS SCALAR LVALUE: 1 Type: char
+primaryExpression() 1: char
+expression 1
+expression 5
+expression lvalue: 1
+logicalAnd lvalue: 1
+equality lvalue: 1
+relational lvalue: 1
+additive lvalue: 1
+multiplicative lvalue: 1
+prefix lvalue: 1
+postfix lvalue: 1
+primaryExpression() lvalue: 1
+primaryExpression(): ID: 297
+IN PRIMARYEXPRESSION ID ELSE
+IN PRIMARYEXPRESSION NOT SCALAR LVALUE: int[10]
+primaryExpression() 1: int[10]
+expression 1
+expression 5
+checkFuncCall: int(int, int *), arg size: 2
+checkFuncCall: params matches args
+promote(): char to int
+promote(): char to int
+promote(): char to int
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+primaryExpression(): ID: 297
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+expression lvalue: 0
+logicalAnd lvalue: 0
+equality lvalue: 0
+relational lvalue: 0
+additive lvalue: 0
+multiplicative lvalue: 0
+prefix lvalue: 0
+postfix lvalue: 0
+primaryExpression() lvalue: 0
+expression 1
+expression 5
+checkFuncCall: int(int, int *), arg size: 3
+expression 1
+expression 5

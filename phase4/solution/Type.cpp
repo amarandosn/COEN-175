@@ -22,6 +22,7 @@
 # include <cassert>
 # include "Type.h"
 # include "tokens.h"
+# include <iostream>
 
 using namespace std;
 
@@ -80,13 +81,15 @@ Type Type::promote() const
 	//char to int case
 	if(_kind == SCALAR && _specifier == CHAR && _indirection == 0)
 	{
+		cout << "promote(): char to int" << endl;
 		return Type(INT);
 	}
 
 	//array to pointer case
 	if(_kind == ARRAY)
 	{
-		return Type(SCALAR, _specifier, 1);
+		cout << "promote(): array to pointer" << endl;
+		return Type(_specifier, _indirection +1);
 	}
 	
 	return *this;	//default case
@@ -95,21 +98,46 @@ Type Type::promote() const
 bool Type::isPointer() const
 {
 	//returns true if pointer
-	return promote()._indirection > 0;
+	return (promote()._kind == SCALAR && promote()._indirection > 0);
 }
 
 bool Type::isPredicate() const
 {
 	//returns true if pointer(T) or INT
-	return (promote()._indirection > 0 || promote()._specifier == INT);
+	
+	if(promote().isPointer())
+		return true;
+	if(promote() == Type(INT))
+		return true;
+	return false;
 }
 
-bool Type::isCompatible() const
+bool Type::isPtrToNull() const
+{
+	if(_kind == SCALAR && _specifier == VOID && _indirection == 1)
+		return true;
+	return false;
+}
+ 
+bool Type::isCompatible(const Type &left, const Type &right) const
 {
 	//return true if identical predicate types
 	//or one is pointer(T) and the other is pointer(void)
-	
-	return true;
+	Type t, s;
+	t = left.promote();
+	s = right.promote();
+
+	if(t.isPredicate() && s.isPredicate())
+		if(t == s)
+			return true;
+
+
+	if((t._kind == SCALAR && t._indirection > 0) && (s._kind == SCALAR && s._indirection == 1 && s._specifier == VOID))
+		return true;
+	else if((s._kind == SCALAR && s._indirection > 0) && (t._kind == SCALAR && t._indirection == 1 && t._specifier == VOID))
+		return true;
+	else
+		return false;
 }
 
 
