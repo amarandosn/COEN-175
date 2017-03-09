@@ -5,22 +5,22 @@ towers:
 	movl	%esp, %ebp
 	subl	$0, %esp
 #FUNCTION BODY
-	pushl	20(%ebp)
-	pushl	24(%ebp)
 	pushl	16(%ebp)
+	pushl	20(%ebp)
 	pushl	12(%ebp)
+	pushl	8(%ebp)
 	call	call_towers
-	pushl	20(%ebp)
 	pushl	16(%ebp)
-	call	print_move
-	pushl	16(%ebp)
-	pushl	20(%ebp)
-	pushl	24(%ebp)
 	pushl	12(%ebp)
+	call	print_move
+	pushl	12(%ebp)
+	pushl	16(%ebp)
+	pushl	20(%ebp)
+	pushl	8(%ebp)
 	call	call_towers
 #FUNCTION EPILOGUE
 	movl	%ebp, %esp
-	pop		%ebp
+	pop	%ebp
 	ret
 .globl main
 main:
@@ -39,5 +39,5 @@ main:
 	call	towers
 #FUNCTION EPILOGUE
 	movl	%ebp, %esp
-	pop		%ebp
+	pop	%ebp
 	ret

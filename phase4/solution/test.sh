@@ -1,23 +1,25 @@
 #!/bin/bash
-make
-./scc < examples/expr.c > expr.out
-diff examples/expr.err expr.out
-echo finished expr.c
-./scc < examples/stmt.c > stmt.out
-diff examples/stmt.err stmt.out
-echo finished stmt.c
-./scc < examples/void.c > void.out
-diff examples/void.err void.out
-echo finished void.c
-./scc < examples/tree.c > tree.out
-diff examples/tree.err tree.out
-echo finished tree.c
-./scc < examples/expressionChecker.c > expressionChecker.out
-diff examples/expressionChecker.err expressionChecker.out
-echo finished expressionChecker.c
-./scc < examples/manny.c > manny.out
-diff examples/manny.err manny.out
-echo finished manny.c
+make clean all
+./scc < examples/array.c > array.s
+gcc -m32 array.s examples/array-lib.c
+./a.out
+
+./scc < examples/global.c > global.s
+gcc -m32 global.s examples/global-lib.c
+./a.out
+
+./scc < examples/local.c > local.s
+gcc -m32 local.s examples/local-lib.c
+./a.out
+
+./scc < examples/putchar.c > putchar.s
+gcc -m32 putchar.s 
+./a.out
+
+./scc < examples/towers.c > towers.s
+gcc -m32 towers.s examples/towers-lib.c
+./a.out
+
 
 #./scc < tests/test00.c > test00.txt
 #diff tests/test00.out test00.txt
@@ -40,7 +42,7 @@ echo finished manny.c
 #./scc < tests/test09.c > test09.txt
 #diff tests/test09.out test09.txt
 
-echo finished
+echo ---------------finished-----------------
 
 #./scc < examples/expr.c > expr.err
 #./scc < examples/stmt.c > stmt.err

@@ -9,10 +9,7 @@ using namespace std;
 
 void Call::generate()
 {
-	//for args.size
-	//pushl 
-	//args[i].generate
-	//endl;
+	//push all parameters before calling functions
 	for(int i = _args.size()-1; i >= 0; i--)
 	{
 		cout << "\tpushl\t";
@@ -30,13 +27,14 @@ void Call::generate()
 
 void Identifier::generate()
 {
+	//set nonglobal IDs with addresses and names
+	//set global IDs as names
 	int offset = _symbol->offset;	
 	stringstream str_offset;
 	if(offset)
 	{
-		//nonglobal
-		//sprintf(str_offset, "%d", offset);
-		//str_offset = itoa(offset);	
+		//nonglobal	
+gcc -m32 local.s examples/local-lib.c
 		str_offset << offset;
 		location = str_offset.str() +  "(%ebp)";
 	}
@@ -45,7 +43,7 @@ void Identifier::generate()
 		//global
 		location = _symbol->name();
 	}
-	//cout << location;
+
 }
 
 
@@ -63,17 +61,16 @@ void Function::generate()
 	cout << "\tpushl\t%ebp" << endl;
 	cout << "\tmovl\t%esp, %ebp" << endl;
 	cout << "\tsubl\t" << "$" << offset << ", %esp" << endl;
-	//subl offset, esp
+	
+	//function body
 	cout << "#FUNCTION BODY" << endl;
-	//allocate(offset);
 	_body->generate();
+	
 	//function epilogue
 	cout << "#FUNCTION EPILOGUE" << endl;
 	cout << "\tmovl\t%ebp, %esp" << endl;
-	cout << "\tpop\t\t" << "%ebp" << endl;
-	//movl ebp esp
-	//pop ebp
-	
+	cout << "\tpop\t" << "%ebp" << endl;
+
 	cout << "\tret" << endl;
  
 
@@ -81,6 +78,7 @@ void Function::generate()
 
 void Block::generate()
 {
+	//call generate on all statements in body
 	for(unsigned i = 0; i < _stmts.size(); i++)
 	{
 		_stmts[i]->generate();
@@ -89,15 +87,21 @@ void Block::generate()
 
 void Number::generate()
 {
-	//$
+	//set number with $ sign
 	location += "$" + value();
 }
 
 void Assignment::generate()
 {
+	//move source to destination
 	cout << "\tmovl\t";
 	_right->generate();
+	//cout << ", %eax" << endl;
+	
+	//cout << "\tmovl %eax, ";
 	_left->generate();
+	//cout << endl;
+	
 	cout << _right->location << ", " <<_left->location << endl;
 
 	//move left
